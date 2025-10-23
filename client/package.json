@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "cd .. && husky ./client/.husky"
   },
   "dependencies": {
     "react": "^19.1.1",
