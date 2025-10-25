@@ -1,25 +1,32 @@
-// so in components folder we will create a reusable components like button, input, etc.
-// example:
+import './Button.css';
 
-// import './Button.css';
+interface ButtonProps {
+  className?: string;
+  onClick?: (() => void) | (() => Promise<void>);
+  children: React.ReactNode;
+  disabled?: boolean;
+  type?: 'button' | 'submit' | 'reset';
+  variant?: 'primary' | 'secondary';
+  size?: 'small' | 'medium' | 'large';
+}
 
-// interface ButtonProps {
-//   className?: string;
-//   onClick?: (() => void) | (() => Promise<void>);
-//   children: React.ReactNode;
-//   disabled?: boolean;
-//   type?: 'button' | 'submit' | 'reset';
-// }
+const Button = ({
+  className = '',
+  onClick,
+  children,
+  disabled = false,
+  type = 'button',
+  variant = 'primary',
+  size = 'medium',
+}: ButtonProps) => (
+  <button
+    className={`btn btn-${variant} btn-${size} ${className}`}
+    onClick={onClick}
+    disabled={disabled}
+    type={type}
+  >
+    {children}
+  </button>
+);
 
-// const Button = ({ className, onClick, children, disabled, type = 'button' }: ButtonProps) => (
-//   <button
-//     className={`${className ? className : ''} btn`}
-//     onClick={onClick}
-//     disabled={disabled}
-//     type={type}
-//   >
-//     {children}
-//   </button>
-// );
-
-// export default Button;
+export default Button;
