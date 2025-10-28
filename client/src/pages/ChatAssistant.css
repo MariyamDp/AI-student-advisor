@@ -58,7 +58,7 @@
 .user-avatar {
   width: 2.5rem;
   height: 2.5rem;
-  background-color: var(--primary-red);
+  background-color: #B91C1C;
   color: white;
   border-radius: 50%;
   display: flex;
@@ -106,7 +106,7 @@
 }
 
 .nav-item.active {
-  background-color: var(--primary-red);
+  background-color: #B91C1C;
   color: white;
 }
 
@@ -206,7 +206,7 @@
 }
 
 .ai-message .message-avatar {
-  background-color: var(--primary-red);
+  background-color: #B91C1C;
 }
 
 .user-message .message-avatar {
@@ -233,7 +233,7 @@
 }
 
 .user-message .message-text {
-  background-color: var(--primary-red);
+  background-color: #B91C1C;
   color: white;
   border-bottom-right-radius: 0.25rem;
 }
@@ -264,9 +264,9 @@
 }
 
 .action-btn:hover {
-  background-color: var(--primary-red);
+  background-color: #B91C1C;
   color: white;
-  border-color: var(--primary-red);
+  border-color: #B91C1C;
 }
 
 /* Chat Input */
@@ -315,12 +315,12 @@
 }
 
 .send-btn {
-  background-color: var(--primary-red);
+  background-color: #B91C1C;
   color: white;
 }
 
 .send-btn:hover {
-  background-color: var(--primary-red-dark);
+  background-color: #991B1B;
 }
 
 /* Responsive Design */

@@ -17,26 +17,36 @@
 
 /* Variants */
 .btn-primary {
-  background-color: #dc2626;
+  background-color: #B91C1C;
   color: white;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #b91c1c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+  background-color: #991B1B;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.4);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(185, 28, 28, 0.3);
 }
 
 .btn-secondary {
   background-color: white;
-  color: #dc2626;
-  border: 2px solid #dc2626;
+  color: #B91C1C;
+  border: 2px solid #B91C1C;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: #dc2626;
+  background-color: #B91C1C;
   color: white;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
 }
 
 /* Sizes */

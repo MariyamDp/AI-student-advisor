@@ -14,9 +14,9 @@
   -moz-osx-font-smoothing: grayscale;
   
   /* Brand colors */
-  --primary-red: #e53e3e;
-  --primary-red-dark: #c53030;
-  --primary-red-light: #fc8181;
+  --primary-red: #B91C1C;
+  --primary-red-dark: #991B1B;
+  --primary-red-light: #DC7F7F;
   --text-primary: #1a1a1a;
   --text-secondary: #4a5568;
   --text-muted: #718096;
@@ -81,7 +81,7 @@ p {
 }
 
 .text-red {
-  color: var(--primary-red);
+  color: #B91C1C;
 }
 
 .text-gray {
