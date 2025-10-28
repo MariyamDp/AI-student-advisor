@@ -3,21 +3,28 @@ import { Link } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
 import './ChatAssistant.css';
 
+// Импорт иконок
+import booksIcon from '../assets/icons/books.png';
+import calendarIcon from '../assets/icons/calendar.png';
+import planeIcon from '../assets/icons/plane.png';
+import peopleIcon from '../assets/icons/people.png';
+import labIcon from '../assets/icons/lab.png';
+import questionIcon from '../assets/icons/question.png';
+import logoIcon from '../assets/icons/logo.png';
+import chatIcon from '../assets/icons/chat.png';
+
 const ChatAssistant = () => {
   const { messages, isLoading, sendMessage } = useChat();
   const [inputValue, setInputValue] = useState('');
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
-
     await sendMessage(inputValue);
     setInputValue('');
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      handleSendMessage();
-    }
+    if (e.key === 'Enter') handleSendMessage();
   };
 
   const suggestedActions = [
@@ -28,12 +35,12 @@ const ChatAssistant = () => {
   ];
 
   const categories = [
-    { name: 'Academic Planning', icon: '📚' },
-    { name: 'Course Registration', icon: '📝' },
-    { name: 'Academic Mobility', icon: '✈️' },
-    { name: 'Double Degree Program', icon: '🎓' },
-    { name: 'Research Opportunities', icon: '🔬' },
-    { name: 'General Support', icon: '💬' },
+    { name: 'Academic Planning', icon: booksIcon },
+    { name: 'Course Registration', icon: calendarIcon },
+    { name: 'Academic Mobility', icon: planeIcon },
+    { name: 'Double Degree Program', icon: peopleIcon },
+    { name: 'Research Opportunities', icon: labIcon },
+    { name: 'General Support', icon: questionIcon },
   ];
 
   const navItems = [
@@ -49,9 +56,11 @@ const ChatAssistant = () => {
       {/* Header */}
       <header className="chat-header">
         <div className="header-left">
-          <button className="menu-btn">☰</button>
+          <button className="menu-btn">
+            <img src={chatIcon} alt="menu" width="22" />
+          </button>
           <div className="header-logo">
-            <span className="logo-icon">🎓</span>
+            <img src={logoIcon} alt="MNU logo" className="logo-icon" />
             <span className="logo-text">MNU Portal</span>
           </div>
         </div>
@@ -61,7 +70,7 @@ const ChatAssistant = () => {
       </header>
 
       <div className="chat-layout">
-        {/* Left Sidebar */}
+        {/* Sidebar */}
         <aside className="sidebar">
           <nav className="sidebar-nav">
             {navItems.map(item => (
@@ -76,27 +85,34 @@ const ChatAssistant = () => {
           </nav>
         </aside>
 
-        {/* Middle Section - Categories */}
+        {/* Categories */}
         <section className="categories-section">
           <h3 className="categories-title">Academic Categories</h3>
           <div className="categories-grid">
             {categories.map(category => (
               <div key={category.name} className="category-item">
-                <span className="category-icon">{category.icon}</span>
+                <img src={category.icon} alt={category.name} className="category-icon" />
                 <span className="category-name">{category.name}</span>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Right Section - Chat Interface */}
+        {/* Chat */}
         <main className="chat-main">
           <div className="chat-container">
-            {/* Chat Messages */}
+            {/* Messages */}
             <div className="chat-messages">
               {messages.map(message => (
                 <div key={message.id} className={`message ${message.sender}-message`}>
-                  <div className="message-avatar">{message.sender === 'ai' ? '🎓' : '👤'}</div>
+                  <div className="message-avatar">
+                    <img
+                      src={message.sender === 'ai' ? logoIcon : peopleIcon}
+                      alt="avatar"
+                      width="30"
+                      className="avatar-img"
+                    />
+                  </div>
                   <div className="message-content">
                     <div className="message-text">{message.content}</div>
                     <div className="message-time">
@@ -124,10 +140,12 @@ const ChatAssistant = () => {
               ))}
             </div>
 
-            {/* Chat Input */}
+            {/* Input */}
             <div className="chat-input-container">
               <div className="chat-input">
-                <button className="mic-btn">🎤</button>
+                <button className="mic-btn">
+                  <img src={chatIcon} alt="mic" width="22" />
+                </button>
                 <input
                   type="text"
                   value={inputValue}
@@ -141,7 +159,7 @@ const ChatAssistant = () => {
                   onClick={handleSendMessage}
                   disabled={isLoading || !inputValue.trim()}
                 >
-                  {isLoading ? '⏳' : '✈️'}
+                  {isLoading ? '⏳' : <img src={planeIcon} alt="send" className="send-icon" />}
                 </button>
               </div>
             </div>
