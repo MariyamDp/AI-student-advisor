@@ -9,6 +9,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.logo-img {
+  width: 30px;
+  height: auto;
+  margin-right: 10px;
+}
+
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -87,3 +93,4 @@
     font-size: 0.9rem;
   }
 }
+
