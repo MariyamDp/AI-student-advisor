@@ -1,2 +1,40 @@
-// header component
-// add css file or inline css here
+import { Link } from 'react-router-dom';
+import './Header.css';
+
+const Header = () => {
+  return (
+    <header className="header">
+      <div className="header-container">
+        <Link to="/" className="logo">
+          <div className="logo-icon">🎓</div>
+          <span className="logo-text">AI Agent</span>
+        </Link>
+
+        <nav className="nav-menu">
+          <Link to="/" className="nav-link">
+            Home
+          </Link>
+          <Link to="/about" className="nav-link">
+            About
+          </Link>
+          <Link to="/who-we-serve" className="nav-link">
+            Who We Serve
+          </Link>
+          <Link to="/product" className="nav-link">
+            Product
+          </Link>
+          <Link to="/pricing" className="nav-link">
+            Pricing
+          </Link>
+          <Link to="/faqs" className="nav-link">
+            FAQs
+          </Link>
+        </nav>
+
+        <button className="login-btn">Login</button>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
