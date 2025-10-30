@@ -41,7 +41,7 @@ const Home = () => {
                 <div className="chat-preview">
                   <div className="chat-header">
                     <div className="chat-logo">
-                      <span className="logo-icon">🎓</span>
+                      <img src="/logomain.png" alt="logo" className="logo-img" />
                       <span>AI Agent</span>
                     </div>
                   </div>
@@ -49,7 +49,7 @@ const Home = () => {
                   <div className="chat-messages">
                     <div className="message ai-message">
                       <div className="message-content">
-                        Hello! I'm your MIU Academic Assistant. How can I help you today?
+                        Hello! I'm your MNU Academic Assistant. How can I help you today?
                       </div>
                     </div>
 
