@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { sendChatMessage } from '../services/api.service';
 
 export interface Message {
   id: string;
@@ -17,65 +18,55 @@ export const useChat = () => {
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [conversationId, setConversationId] = useState<string | undefined>(undefined);
 
-  const sendMessage = useCallback(async (content: string) => {
-    if (!content.trim()) return;
+  const sendMessage = useCallback(
+    async (content: string) => {
+      if (!content.trim()) return;
 
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      content: content.trim(),
-      sender: 'user',
-      timestamp: new Date(),
-    };
+      const userMessage: Message = {
+        id: Date.now().toString(),
+        content: content.trim(),
+        sender: 'user',
+        timestamp: new Date(),
+      };
 
-    setMessages(prev => [...prev, userMessage]);
-    setIsLoading(true);
+      setMessages(prev => [...prev, userMessage]);
+      setIsLoading(true);
 
-    try {
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      try {
+        const { answer, conversationId: newConversationId } = await sendChatMessage(
+          content.trim(),
+          conversationId
+        );
+        if (newConversationId && newConversationId !== conversationId) {
+          setConversationId(newConversationId);
+        }
 
-      // Mock AI responses based on user input
-      let aiResponse = "I understand you're asking about this topic. Let me help you with that.";
+        const aiMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          content: answer || "I'm not sure about that yet.",
+          sender: 'ai',
+          timestamp: new Date(),
+        };
 
-      if (content.toLowerCase().includes('gpa')) {
-        aiResponse =
-          "I understand you're asking about your GPA. Let me help you with that. Based on your current academic progress, I recommend checking your milestones page to see your next steps.";
-      } else if (content.toLowerCase().includes('prerequisite')) {
-        aiResponse =
-          "I can help you check prerequisites for your courses. Please specify which course you're interested in, and I'll provide detailed prerequisite information.";
-      } else if (content.toLowerCase().includes('milestone')) {
-        aiResponse =
-          'Your academic milestones are important for tracking your progress. I can help you understand what milestones you need to complete and when.';
-      } else if (content.toLowerCase().includes('course')) {
-        aiResponse =
-          "I can assist you with course-related questions. Whether it's about registration, prerequisites, or course planning, I'm here to help.";
-      } else if (content.toLowerCase().includes('registration')) {
-        aiResponse =
-          'Course registration can be complex. I can guide you through the process and help you understand the requirements and deadlines.';
+        setMessages(prev => [...prev, aiMessage]);
+      } catch (error) {
+        console.error('Error sending message:', error);
+        const details = error instanceof Error ? error.message : 'Unknown error';
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          content: `I'm sorry, I encountered an error. ${details}`,
+          sender: 'ai',
+          timestamp: new Date(),
+        };
+        setMessages(prev => [...prev, errorMessage]);
+      } finally {
+        setIsLoading(false);
       }
-
-      const aiMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: aiResponse,
-        sender: 'ai',
-        timestamp: new Date(),
-      };
-
-      setMessages(prev => [...prev, aiMessage]);
-    } catch (error) {
-      console.error('Error sending message:', error);
-      const errorMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        content: "I'm sorry, I encountered an error. Please try again.",
-        sender: 'ai',
-        timestamp: new Date(),
-      };
-      setMessages(prev => [...prev, errorMessage]);
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
+    },
+    [conversationId]
+  );
 
   const clearMessages = useCallback(() => {
     setMessages([
@@ -86,6 +77,7 @@ export const useChat = () => {
         timestamp: new Date(),
       },
     ]);
+    setConversationId(undefined);
   }, []);
 
   return {
@@ -93,5 +85,6 @@ export const useChat = () => {
     isLoading,
     sendMessage,
     clearMessages,
+    conversationId,
   };
 };
