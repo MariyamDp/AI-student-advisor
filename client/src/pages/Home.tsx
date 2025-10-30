@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../components/nav/Header';
 import Button from '../components/button/Button';
 import './Home.css';
+// import Footer from '../components/footer/Footer.tsx';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -75,7 +76,9 @@ const Home = () => {
                       placeholder="Type your message here..."
                       className="message-input"
                     />
-                    <button className="send-btn">✈️</button>
+                    <button className="send-btn">
+                      <img src="/arrow.png" alt="send" />
+                    </button>
                   </div>
                 </div>
 
@@ -87,33 +90,46 @@ const Home = () => {
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="features-section">
-          <div className="container">
-            <div className="features-grid">
-              <div className="feature-item">
-                <div className="feature-icon">✓</div>
-                <p>Plan your semester with ease</p>
+        <section className="about-section">
+          <div className="about-wrap">
+            <h2 className="about-main-title">
+              Empower Every Student to Realize Their Boldest Career Dreams
+            </h2>
+
+            <div className="about-content">
+              <div className="about-copy">
+                <h3 className="about-subtitle">About AI Agent</h3>
+
+                <p>
+                  <strong>AI Agent</strong> is an intelligent academic advisor built to transform
+                  how students, advisors, and administrators interact within the university system.
+                </p>
+
+                <p>
+                  It goes beyond simple automation — empowering every user to make informed, timely,
+                  and confident academic decisions.
+                </p>
+
+                <p>
+                  By integrating data, personalization, and AI technology, AI Agent creates a
+                  unified academic ecosystem — where every student receives tailored guidance and
+                  every advisor has the tools to ensure success.
+                </p>
+
+                <p>
+                  The platform bridges communication, simplifies academic management, and turns
+                  complex educational paths into clear, achievable goals.
+                </p>
               </div>
 
-              <div className="feature-item">
-                <div className="feature-icon">✓</div>
-                <p>Find the best exchange or double degree opportunities</p>
-              </div>
-
-              <div className="feature-item">
-                <div className="feature-icon">✓</div>
-                <p>Visualize your progress with smart dashboards</p>
-              </div>
-
-              <div className="feature-item">
-                <div className="feature-icon">✓</div>
-                <p>Get quick answers for registration, research, and university services</p>
-              </div>
+              <figure className="about-shot">
+                <img src="/about.png" alt="AI Agent Interface" />
+              </figure>
             </div>
           </div>
         </section>
       </main>
+      {/* <Footer /> */}
     </div>
   );
 };
