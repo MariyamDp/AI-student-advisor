@@ -1,6 +1,7 @@
 // Create an API service for chatting with the backend
 const SERVER_URL =
-  (import.meta.env as { VITE_SERVER_URL?: string }).VITE_SERVER_URL || 'http://localhost:3001';
+  (import.meta.env as { VITE_SERVER_URL?: string }).VITE_SERVER_URL ||
+  'https://ai-student-advisor.onrender.com';
 
 export interface ChatResponse {
   answer: string;
