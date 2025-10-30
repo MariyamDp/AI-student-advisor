@@ -7,12 +7,15 @@
   right: 0;
   z-index: 1000;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+<<<<<<< HEAD
 }
 
 .logo-img {
   width: 25px;
   height: auto;
   margin-right: 10px;
+=======
+>>>>>>> af3b234ded5574f76f3b8fc5ef7014c61f825942
 }
 
 .header-container {
@@ -93,4 +96,3 @@
     font-size: 0.9rem;
   }
 }
-
