@@ -10,7 +10,12 @@ const PORT = process.env.PORT || 3001;
 const DIFY_API_KEY = process.env.API_KEY;
 const DIFY_BASE_URL = process.env.BASE_URL || 'https://api.dify.ai/v1';
 
-app.use(cors());
+app.use(cors({
+    origin: ['https://ai-student-advisor-1.onrender.com'],
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
+  
 app.use(express.json());
 
 app.get('/health', (_req, res) => {
