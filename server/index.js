@@ -1,7 +1,7 @@
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const axios = require('axios');
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import axios from 'axios';
 
 dotenv.config();
 
@@ -10,12 +10,14 @@ const PORT = process.env.PORT || 3001;
 const DIFY_API_KEY = process.env.API_KEY;
 const DIFY_BASE_URL = process.env.BASE_URL || 'https://api.dify.ai/v1';
 
-app.use(cors({
+app.use(
+  cors({
     origin: ['https://ai-student-advisor-1.onrender.com'],
     methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization']
-  }));
-  
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
+
 app.use(express.json());
 
 app.get('/health', (_req, res) => {
@@ -57,13 +59,12 @@ app.post('/api/chat', async (req, res) => {
     });
   } catch (err) {
     const status = err.response?.status || 500;
-    res.status(status).json({ error: 'Failed to contact Dify', details: err.response?.data || err.message });
+    res
+      .status(status)
+      .json({ error: 'Failed to contact Dify', details: err.response?.data || err.message });
   }
 });
 
 app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
   console.log(`Server listening on http://localhost:${PORT}`);
 });
-
-
