@@ -4,7 +4,7 @@
 }
 
 .main-content {
-  padding-top: 80px; /* Account for fixed header */
+  padding-top: 80px;
 }
 
 /* Hero Section */
@@ -58,7 +58,7 @@
 
 .chat-preview {
   background: white;
-  border: 2px solid #B91C1C;
+  border: 2px solid var(--primary-red);
   border-radius: 1rem;
   width: 100%;
   max-width: 400px;
@@ -82,7 +82,7 @@
 }
 
 .chat-header {
-  background-color: #B91C1C;
+  background-color: var(--primary-red);
   padding: 1rem;
   color: white;
   font-weight: 600;
@@ -132,7 +132,7 @@
 }
 
 .user-message .message-content {
-  background-color: #B91C1C;
+  background-color: var(--primary-red);
   color: white;
 }
 
@@ -154,11 +154,11 @@
 }
 
 .message-input:focus {
-  border-color: #B91C1C;
+  border-color: var(--primary-red);
 }
 
 .send-btn {
-  background-color: #B91C1C;
+  background-color: var(--primary-red);
   color: white;
   border: none;
   border-radius: 0.5rem;
@@ -182,8 +182,9 @@
   right: -20px;
   width: 60px;
   height: 60px;
-  background-color: #B91C1C;
+  background-color: #ffffff;
   border-radius: 50%;
+  border: 2px solid var(--primary-red);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -238,7 +239,7 @@
 .feature-icon {
   width: 40px;
   height: 40px;
-  background-color: #B91C1C;
+  background-color: var(--primary-red);
   color: white;
   border-radius: 50%;
   display: flex;

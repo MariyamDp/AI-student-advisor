@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/nav/Header';
 import Button from '../components/button/Button';
+import botIcon from '../assets/botIcon.svg';
 import './Home.css';
 
 const Home = () => {
@@ -21,7 +22,7 @@ const Home = () => {
             <div className="hero-content">
               <div className="hero-text">
                 <h1 className="hero-title">
-                  Your Personal Academic <span className="text-red">AI Agent</span>
+                  Your Personal Academic <span className="text-red">AI Advisor</span>
                 </h1>
                 <p className="hero-description">
                   Navigate your university journey with confidence. Get personalized guidance for
@@ -49,7 +50,7 @@ const Home = () => {
                   <div className="chat-messages">
                     <div className="message ai-message">
                       <div className="message-content">
-                        Hello! I'm your MIU Academic Assistant. How can I help you today?
+                        Hello! I'm your MNU Academic Assistant. How can I help you today?
                       </div>
                     </div>
 
@@ -70,17 +71,13 @@ const Home = () => {
                   </div>
 
                   <div className="chat-input">
-                    <input
-                      type="text"
-                      placeholder="Type your message here..."
-                      className="message-input"
-                    />
+                    <div className="message-input">Type your message here...</div>
                     <button className="send-btn">✈️</button>
                   </div>
                 </div>
 
                 <div className="floating-chat-icon">
-                  <span className="logo-icon">🎓</span>
+                  <img src={botIcon} alt="bot icon" width={32} height={32} />
                 </div>
               </div>
             </div>
