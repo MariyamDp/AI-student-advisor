@@ -26,11 +26,19 @@ const ChatContainer = ({
   return (
     <div className="chat-container">
       <ChatMessages messages={messages} />
-      <SuggestedActions actions={suggestedActions} onActionClick={onActionClick} disabled={isLoading} />
-      <ChatInput value={inputValue} onChange={onInputChange} onSend={onSend} isLoading={isLoading} />
+      <SuggestedActions
+        actions={suggestedActions}
+        onActionClick={onActionClick}
+        disabled={isLoading}
+      />
+      <ChatInput
+        value={inputValue}
+        onChange={onInputChange}
+        onSend={onSend}
+        isLoading={isLoading}
+      />
     </div>
   );
 };
 
 export default ChatContainer;
-

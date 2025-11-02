@@ -45,16 +45,15 @@
     width: 100%;
     padding: 1rem 0;
   }
-  
+
   .sidebar-nav {
     flex-direction: row;
     overflow-x: auto;
     padding: 0 1rem;
   }
-  
+
   .nav-item {
     white-space: nowrap;
     min-width: fit-content;
   }
 }
-

@@ -26,11 +26,7 @@ const ChatInput = ({ value, onChange, onSend, isLoading }: ChatInputProps) => {
           placeholder="Ask me anything about your academic journey..."
           className="message-input"
         />
-        <button
-          className="send-btn"
-          onClick={onSend}
-          disabled={isLoading || !value.trim()}
-        >
+        <button className="send-btn" onClick={onSend} disabled={isLoading || !value.trim()}>
           {isLoading ? '⏳' : '✈️'}
         </button>
       </div>
@@ -39,4 +35,3 @@ const ChatInput = ({ value, onChange, onSend, isLoading }: ChatInputProps) => {
 };
 
 export default ChatInput;
-

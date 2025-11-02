@@ -25,8 +25,8 @@ const ChatPreview = () => {
 
           <div className="message ai-message">
             <div className="message-content">
-              Let me help you with that. Based on your current academic progress, I
-              recommend checking your milestones page to see your next steps.
+              Let me help you with that. Based on your current academic progress, I recommend
+              checking your milestones page to see your next steps.
             </div>
           </div>
 
@@ -49,4 +49,3 @@ const ChatPreview = () => {
 };
 
 export default ChatPreview;
-

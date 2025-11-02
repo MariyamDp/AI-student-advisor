@@ -20,4 +20,3 @@ const HeroSection = ({ onStartChatting }: HeroSectionProps) => {
 };
 
 export default HeroSection;
-

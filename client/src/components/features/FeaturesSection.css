@@ -20,7 +20,9 @@
   background: white;
   border-radius: 0.75rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .feature-item:hover {
@@ -55,9 +57,8 @@
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .feature-item {
     padding: 1rem;
   }
 }
-

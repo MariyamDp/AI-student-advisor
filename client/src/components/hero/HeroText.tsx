@@ -12,15 +12,10 @@ const HeroText = ({ onStartChatting }: HeroTextProps) => {
         Your Personal Academic <span className="text-red">AI Advisor</span>
       </h1>
       <p className="hero-description">
-        Navigate your university journey with confidence. Get personalized guidance for
-        course planning, academic mobility, double degrees, and research opportunities.
+        Navigate your university journey with confidence. Get personalized guidance for course
+        planning, academic mobility, double degrees, and research opportunities.
       </p>
-      <Button
-        variant="primary"
-        size="large"
-        onClick={onStartChatting}
-        className="hero-cta"
-      >
+      <Button variant="primary" size="large" onClick={onStartChatting} className="hero-cta">
         Start Chatting
       </Button>
     </div>
@@ -28,4 +23,3 @@ const HeroText = ({ onStartChatting }: HeroTextProps) => {
 };
 
 export default HeroText;
-

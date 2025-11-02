@@ -26,4 +26,3 @@ const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
 };
 
 export default CategoriesSection;
-

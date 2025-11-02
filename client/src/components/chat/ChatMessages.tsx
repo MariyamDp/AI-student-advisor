@@ -27,4 +27,3 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
 };
 
 export default ChatMessages;
-

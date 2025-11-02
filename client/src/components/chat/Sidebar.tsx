@@ -30,4 +30,3 @@ const Sidebar = ({ navItems }: SidebarProps) => {
 };
 
 export default Sidebar;
-

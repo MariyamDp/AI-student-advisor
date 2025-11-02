@@ -17,8 +17,6 @@
   overflow: hidden;
 }
 
-
-
 .chat-header {
   background-color: var(--primary-red);
   padding: 1rem;
@@ -110,7 +108,7 @@
 }
 
 .send-btn:hover {
-  background-color: #991B1B;
+  background-color: #991b1b;
   transform: scale(1.05);
 }
 
@@ -136,7 +134,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -163,4 +162,3 @@
     right: -15px;
   }
 }
-

@@ -24,4 +24,3 @@ const SuggestedActions = ({ actions, onActionClick, disabled }: SuggestedActions
 };
 
 export default SuggestedActions;
-
