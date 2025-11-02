@@ -17,36 +17,36 @@
 
 /* Variants */
 .btn-primary {
-  background-color: #B91C1C;
+  background-color: var(--primary-red);
   color: white;
   font-weight: 600;
   font-size: 1rem;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #991B1B;
+  background-color: var(--primary-red);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.4);
+  box-shadow: 0 4px 12px rgba(var(--primary-red), 0.4);
 }
 
 .btn-primary:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(185, 28, 28, 0.3);
+  box-shadow: 0 2px 4px rgba(var(--primary-red), 0.3);
 }
 
 .btn-secondary {
   background-color: white;
-  color: #B91C1C;
-  border: 2px solid #B91C1C;
+  color: var(--primary-red);
+  border: 2px solid var(--primary-red);
   font-weight: 600;
   font-size: 1rem;
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: #B91C1C;
+  background-color: var(--primary-red);
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--primary-red), 0.3);
 }
 
 /* Sizes */

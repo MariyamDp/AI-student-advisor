@@ -1,5 +1,5 @@
 .header {
-  background-color: #B91C1C;
+  background-color: var(--primary-red);
   padding: 0;
   position: fixed;
   top: 0;
@@ -57,7 +57,7 @@
 
 .login-btn {
   background-color: white;
-  color: #B91C1C;
+  color: var(--primary-red);
   border: none;
   padding: 0.625rem 1.5rem;
   border-radius: 0.5rem;
