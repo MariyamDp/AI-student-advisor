@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
 import './Header.css';
+import logo from '../../assets/icon.svg';
 
 const Header = () => {
   return (
     <header className="header">
       <div className="header-container">
         <Link to="/" className="logo">
-          <div className="logo-icon">🎓</div>
-          <span className="logo-text">AI Agent</span>
+          <img src={logo} alt="logo" className="logo-icon" width={32} height={32} />
+          <span className="logo-text">AI Advisor</span>
         </Link>
 
         <nav className="nav-menu">

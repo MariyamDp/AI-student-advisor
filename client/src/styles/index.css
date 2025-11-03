@@ -1,6 +1,12 @@
 /* Global styles */
 :root {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -12,11 +18,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  
+
   /* Brand colors */
-  --primary-red: #B91C1C;
-  --primary-red-dark: #991B1B;
-  --primary-red-light: #DC7F7F;
+  --primary-red: #a61b32;
+  --primary-red-light: #dc7f7f;
   --text-primary: #1a1a1a;
   --text-secondary: #4a5568;
   --text-muted: #718096;
@@ -43,7 +48,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
@@ -81,7 +91,7 @@ p {
 }
 
 .text-red {
-  color: #B91C1C;
+  color: #b91c1c;
 }
 
 .text-gray {
