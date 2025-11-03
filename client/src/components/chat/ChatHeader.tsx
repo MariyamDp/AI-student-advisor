@@ -7,7 +7,7 @@ const ChatHeader = () => {
         <button className="menu-btn">☰</button>
         <div className="header-logo">
           <span className="logo-icon">🎓</span>
-          <span className="logo-text">MNU Portal</span>
+          <span className="logo-title">MNU Portal</span>
         </div>
       </div>
       <div className="header-right">
