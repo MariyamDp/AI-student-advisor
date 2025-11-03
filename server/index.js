@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import authRoutes, { authMiddleware } from './auth.js';
 
 dotenv.config();
 
@@ -20,11 +21,14 @@ app.use(
 
 app.use(express.json());
 
+// Auth routes
+app.use('/auth', authRoutes);
+
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', authMiddleware, async (req, res) => {
   try {
     const { query, conversationId, inputs } = req.body || {};
     if (!DIFY_API_KEY) {

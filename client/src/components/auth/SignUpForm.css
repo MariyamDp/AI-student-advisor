@@ -1,0 +1,14 @@
+.signup-form-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--primary-red);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.signup-form-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
