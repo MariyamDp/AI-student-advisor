@@ -15,6 +15,7 @@ import './ChatAssistant.css';
 const ChatAssistant = () => {
   const { messages, isLoading, sendMessage } = useChat();
   const [inputValue, setInputValue] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -49,10 +50,23 @@ const ChatAssistant = () => {
 
   return (
     <div className="chat-assistant-page">
-      <ChatHeader />
+      <ChatHeader 
+        onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
+        isSidebarOpen={isSidebarOpen}
+      />
 
       <div className="chat-layout">
-        <Sidebar navItems={navItems} />
+        <Sidebar 
+          navItems={navItems} 
+          isOpen={isSidebarOpen}
+          onClose={() => setIsSidebarOpen(false)}
+        />
+        {isSidebarOpen && (
+          <div 
+            className="sidebar-overlay" 
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
         <CategoriesSection categories={categories} />
         <main className="chat-main">
           <ChatContainer

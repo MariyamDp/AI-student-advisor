@@ -9,17 +9,20 @@ interface NavItem {
 
 interface SidebarProps {
   navItems: NavItem[];
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-const Sidebar = ({ navItems }: SidebarProps) => {
+const Sidebar = ({ navItems, isOpen, onClose }: SidebarProps) => {
   return (
-    <aside className="sidebar">
+    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
       <nav className="sidebar-nav">
         {navItems.map(item => (
           <Link
             key={item.name}
             to={item.path}
             className={`nav-item ${item.active ? 'active' : ''}`}
+            onClick={onClose}
           >
             {item.name}
           </Link>

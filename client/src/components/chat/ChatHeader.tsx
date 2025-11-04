@@ -1,11 +1,17 @@
 import './ChatHeader.css';
 import LogoIcon from '../../assets/logoIcon.svg';
+import BurgerMenu from '../burger/BurgerMenu';
 
-const ChatHeader = () => {
+interface ChatHeaderProps {
+  onMenuClick: () => void;
+  isSidebarOpen?: boolean;
+}
+
+const ChatHeader = ({ onMenuClick, isSidebarOpen = false }: ChatHeaderProps) => {
   return (
     <header className="chat-header-container">
       <div className="header-left">
-        <button className="menu-btn">☰</button>
+        <BurgerMenu onClick={onMenuClick} isOpen={isSidebarOpen} />
         <div className="header-logo">
           <img src={LogoIcon} alt="Logo" />
           <span className="logo-title">MNU Portal</span>

@@ -1,0 +1,50 @@
+.burger-menu {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.375rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 40px;
+  position: relative;
+}
+
+.burger-line {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-primary, #000);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.3s ease;
+}
+
+.burger-line:nth-child(1) {
+  transform: translate(-50%, calc(-50% - 8px));
+}
+
+.burger-line:nth-child(2) {
+  transform: translate(-50%, -50%);
+}
+
+.burger-line:nth-child(3) {
+  transform: translate(-50%, calc(-50% + 8px));
+}
+
+.burger-menu.open .burger-line:nth-child(1) {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.burger-menu.open .burger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.open .burger-line:nth-child(3) {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
