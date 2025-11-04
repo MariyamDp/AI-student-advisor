@@ -10,22 +10,14 @@
   gap: 0.75rem;
   background: #f8f9fa;
   border: 1px solid var(--border-color);
-  border-radius: 2rem;
+  border-radius: 10px;
   padding: 0.75rem 1rem;
 }
 
-.mic-btn,
 .send-btn {
-  background: none;
-  border: none;
-  font-size: 1.25rem;
   cursor: pointer;
-  padding: 0.25rem;
-  border-radius: 50%;
-  transition: background-color 0.2s;
 }
 
-.mic-btn:hover,
 .send-btn:hover:not(:disabled) {
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -54,5 +46,6 @@
 
 .send-btn:disabled {
   opacity: 0.5;
-  cursor: not-allowed;
+  transform: none;
+  cursor: default;
 }

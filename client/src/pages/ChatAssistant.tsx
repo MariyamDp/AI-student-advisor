@@ -4,6 +4,12 @@ import ChatHeader from '../components/chat/ChatHeader';
 import Sidebar from '../components/chat/Sidebar';
 import CategoriesSection from '../components/chat/CategoriesSection';
 import ChatContainer from '../components/chat/ChatContainer';
+import BookIcon from '../assets/bookIcon.svg';
+import DateIcon from '../assets/dateIcon.svg';
+import GlassIcon from '../assets/glassIcon.svg';
+import ProfileIcon from '../assets/profileIcon.svg';
+import PlaneIcon from '../assets/plIcon.png';
+import QuestionIcon from '../assets/questionIcon.svg';
 import './ChatAssistant.css';
 
 const ChatAssistant = () => {
@@ -25,12 +31,12 @@ const ChatAssistant = () => {
   ];
 
   const categories = [
-    { name: 'Academic Planning', icon: '📚' },
-    { name: 'Course Registration', icon: '📝' },
-    { name: 'Academic Mobility', icon: '✈️' },
-    { name: 'Double Degree Program', icon: '🎓' },
-    { name: 'Research Opportunities', icon: '🔬' },
-    { name: 'General Support', icon: '💬' },
+    { name: 'Academic Planning', icon: BookIcon },
+    { name: 'Course Registration', icon: DateIcon },
+    { name: 'Academic Mobility', icon: PlaneIcon },
+    { name: 'Double Degree Program', icon: ProfileIcon },
+    { name: 'Research Opportunities', icon: GlassIcon },
+    { name: 'General Support', icon: QuestionIcon },
   ];
 
   const navItems = [
