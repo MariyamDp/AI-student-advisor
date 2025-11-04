@@ -1,4 +1,5 @@
 import './ChatHeader.css';
+import LogoIcon from '../../assets/logoIcon.svg';
 
 const ChatHeader = () => {
   return (
@@ -6,7 +7,7 @@ const ChatHeader = () => {
       <div className="header-left">
         <button className="menu-btn">☰</button>
         <div className="header-logo">
-          <span className="logo-icon">🎓</span>
+          <img src={LogoIcon} alt="Logo" />
           <span className="logo-title">MNU Portal</span>
         </div>
       </div>

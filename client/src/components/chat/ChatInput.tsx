@@ -9,11 +9,6 @@ interface ChatInputProps {
 }
 
 const ChatInput = ({ value, onChange, onSend, isLoading }: ChatInputProps) => {
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      onSend();
-    }
-  };
 
   return (
     <div className="chat-input-container">
