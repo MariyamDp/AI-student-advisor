@@ -32,12 +32,12 @@ const ChatAssistant = () => {
   ];
 
   const categories = [
-    { name: 'Academic Planning', icon: BookIcon },
-    { name: 'Course Registration', icon: DateIcon },
-    { name: 'Academic Mobility', icon: PlaneIcon },
-    { name: 'Double Degree Program', icon: ProfileIcon },
-    { name: 'Research Opportunities', icon: GlassIcon },
-    { name: 'General Support', icon: QuestionIcon },
+    { name: 'Academic Planning', icon: BookIcon, notactive: false   },
+    { name: 'Course Registration', icon: DateIcon, notactive: true },
+    { name: 'Academic Mobility', icon: PlaneIcon, notactive: true },
+    { name: 'Double Degree Program', icon: ProfileIcon, notactive: true },
+    { name: 'Research Opportunities', icon: GlassIcon, notactive: true },
+    { name: 'General Support', icon: QuestionIcon, notactive: true },
   ];
 
   const navItems = [

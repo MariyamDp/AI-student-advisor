@@ -33,6 +33,25 @@
   background-color: #f1f5f9;
 }
 
+.category-item.notactive {
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.category-item.notactive:hover {
+  background-color: transparent;
+}
+
+.category-item.notactive .category-icon {
+  opacity: 0.4;
+  filter: grayscale(100%);
+}
+
+.category-item.notactive .category-name {
+  color: #9ca3af;
+}
+
 .category-icon {
   width: 24px;
   height: 24px;
