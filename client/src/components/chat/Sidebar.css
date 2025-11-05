@@ -75,11 +75,14 @@
 @media (min-width: 769px) {
   .sidebar {
     position: relative;
-    transition: width 0.3s ease-in-out, padding 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transition:
+      width 0.3s ease-in-out,
+      padding 0.3s ease-in-out,
+      opacity 0.3s ease-in-out;
     transform: translateX(0);
     opacity: 1;
   }
-  
+
   .sidebar:not(.open) {
     width: 0 !important;
     min-width: 0 !important;
@@ -89,7 +92,7 @@
     opacity: 0;
     pointer-events: none;
   }
-  
+
   .sidebar.open {
     width: 250px !important;
     padding: 2rem 0 !important;

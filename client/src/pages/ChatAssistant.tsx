@@ -32,7 +32,7 @@ const ChatAssistant = () => {
   ];
 
   const categories = [
-    { name: 'Academic Planning', icon: BookIcon, notactive: false   },
+    { name: 'Academic Planning', icon: BookIcon, notactive: false },
     { name: 'Course Registration', icon: DateIcon, notactive: true },
     { name: 'Academic Mobility', icon: PlaneIcon, notactive: true },
     { name: 'Double Degree Program', icon: ProfileIcon, notactive: true },
@@ -50,22 +50,19 @@ const ChatAssistant = () => {
 
   return (
     <div className="chat-assistant-page">
-      <ChatHeader 
+      <ChatHeader
         onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)}
         isSidebarOpen={isSidebarOpen}
       />
 
       <div className="chat-layout">
-        <Sidebar 
-          navItems={navItems} 
+        <Sidebar
+          navItems={navItems}
           isOpen={isSidebarOpen}
           onClose={() => setIsSidebarOpen(false)}
         />
         {isSidebarOpen && (
-          <div 
-            className="sidebar-overlay" 
-            onClick={() => setIsSidebarOpen(false)}
-          />
+          <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)} />
         )}
         <CategoriesSection categories={categories} />
         <main className="chat-main">

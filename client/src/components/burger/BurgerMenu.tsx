@@ -7,9 +7,9 @@ interface BurgerMenuProps {
 
 const BurgerMenu = ({ onClick, isOpen = false }: BurgerMenuProps) => {
   return (
-    <button 
-      className={`burger-menu ${isOpen ? 'open' : ''}`} 
-      onClick={onClick} 
+    <button
+      className={`burger-menu ${isOpen ? 'open' : ''}`}
+      onClick={onClick}
       aria-label="Toggle menu"
       type="button"
     >
@@ -21,4 +21,3 @@ const BurgerMenu = ({ onClick, isOpen = false }: BurgerMenuProps) => {
 };
 
 export default BurgerMenu;
-

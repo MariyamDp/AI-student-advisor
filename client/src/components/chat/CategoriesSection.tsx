@@ -16,8 +16,8 @@ const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
       <h3 className="categories-title">Academic Categories</h3>
       <div className="categories-grid">
         {categories.map(category => (
-          <div 
-            key={category.name} 
+          <div
+            key={category.name}
             className={`category-item ${category.notactive ? 'notactive' : ''}`}
           >
             <img src={category.icon} alt={category.name} className="category-icon" />

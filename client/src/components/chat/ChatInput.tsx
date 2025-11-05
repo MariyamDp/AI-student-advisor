@@ -9,11 +9,9 @@ interface ChatInputProps {
 }
 
 const ChatInput = ({ value, onChange, onSend }: ChatInputProps) => {
-
   return (
     <div className="chat-input-container">
       <div className="chat-input-section">
-        
         <input
           type="text"
           value={value}
@@ -21,7 +19,7 @@ const ChatInput = ({ value, onChange, onSend }: ChatInputProps) => {
           placeholder="Ask me anything about your academic journey..."
           className="message-input"
         />
-        <button className="send-btn" onClick={onSend} >
+        <button className="send-btn" onClick={onSend}>
           <img src={SendIcon} alt="Send" />
         </button>
       </div>

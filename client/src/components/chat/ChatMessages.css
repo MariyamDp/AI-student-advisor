@@ -39,7 +39,7 @@
 }
 
 .user-message .message-avatar {
-  background-color: #EFE1E4;
+  background-color: #efe1e4;
 }
 
 .message-content {
@@ -65,7 +65,7 @@
 }
 
 .user-message .message-text {
-  background-color: #EFE1E4;
+  background-color: #efe1e4;
   color: var(--primary-red);
   border-top-right-radius: 0.25rem;
 }

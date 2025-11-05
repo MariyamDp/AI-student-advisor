@@ -19,10 +19,8 @@
 }
 .send-btn img {
   width: 100%;
-
 }
 
 .message-input::placeholder {
   color: var(--text-muted);
 }
-
