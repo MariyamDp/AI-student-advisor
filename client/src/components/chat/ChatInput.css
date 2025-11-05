@@ -13,12 +13,22 @@
 }
 .send-btn {
   cursor: pointer;
+  opacity: 0.5;
   background-color: transparent;
   border: none;
   width: 32px;
 }
+.send-btn:disabled {
+  cursor: default;
+  opacity: 0.3;
+}
 .send-btn img {
   width: 100%;
+}
+
+.message-input:disabled {
+  cursor: default;
+  opacity: 0.7;
 }
 
 .message-input::placeholder {

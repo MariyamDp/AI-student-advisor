@@ -8,7 +8,7 @@ interface ChatInputProps {
   isLoading?: boolean;
 }
 
-const ChatInput = ({ value, onChange, onSend }: ChatInputProps) => {
+const ChatInput = ({ value, onChange, onSend, isLoading = false }: ChatInputProps) => {
   return (
     <div className="chat-input-container">
       <div className="chat-input-section">
@@ -18,8 +18,9 @@ const ChatInput = ({ value, onChange, onSend }: ChatInputProps) => {
           onChange={e => onChange(e.target.value)}
           placeholder="Ask me anything about your academic journey..."
           className="message-input"
+          disabled={isLoading}
         />
-        <button className="send-btn" onClick={onSend}>
+        <button className="send-btn" onClick={onSend} disabled={isLoading}>
           <img src={SendIcon} alt="Send" />
         </button>
       </div>

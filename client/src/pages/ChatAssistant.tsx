@@ -19,9 +19,9 @@ const ChatAssistant = () => {
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
-
-    await sendMessage(inputValue);
+    const messageToSend = inputValue.trim();
     setInputValue('');
+    await sendMessage(messageToSend);
   };
 
   const suggestedActions = [
