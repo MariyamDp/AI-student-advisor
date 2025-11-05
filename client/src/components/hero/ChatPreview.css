@@ -34,7 +34,7 @@
   font-size: 1.25rem;
 }
 
-.chat-messages {
+.chat-messages-preview {
   padding: 1rem;
   min-height: 200px;
   display: flex;
@@ -47,29 +47,31 @@
   max-width: 80%;
 }
 
-.ai-message {
+.ai-message-preview {
   align-self: flex-start;
 }
 
-.user-message {
+.user-message-preview {
   align-self: flex-end;
 }
 
-.message-content {
+.message-content-preview {
   padding: 0.75rem 1rem;
   border-radius: 1rem;
   font-size: 0.9rem;
   line-height: 1.4;
 }
 
-.ai-message .message-content {
+.ai-message-preview .message-content-preview {
   background-color: #f3f4f6;
   color: #374151;
+  border-top-left-radius: 0.25rem;
 }
 
-.user-message .message-content {
-  background-color: var(--primary-red);
-  color: white;
+.user-message-preview .message-content-preview {
+  background-color: #efe1e4;
+  color: var(--primary-red);
+  border-bottom-right-radius: 0.25rem;
 }
 
 .chat-input {
@@ -93,44 +95,13 @@
   border-color: var(--primary-red);
 }
 
-.send-btn {
-  background-color: var(--primary-red);
-  color: white;
+.send-btn-preview {
+  background-color: transparent;
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.75rem;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 32px;
 }
-
-.send-btn:hover {
-  background-color: #991b1b;
-  transform: scale(1.05);
-}
-
-.floating-chat-icon {
-  position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 60px;
-  height: 60px;
-  background-color: #ffffff;
-  border-radius: 50%;
-  border: 2px solid var(--primary-red);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px rgba(185, 28, 28, 0.35);
-  animation: float 3s ease-in-out infinite;
-}
-
-.floating-chat-icon .logo-icon {
-  font-size: 1.5rem;
-  color: white;
+.send-btn-preview img {
+  width: 100%;
 }
 
 @keyframes float {
@@ -153,12 +124,5 @@
 @media (max-width: 480px) {
   .chat-preview {
     max-width: 300px;
-  }
-
-  .floating-chat-icon {
-    width: 50px;
-    height: 50px;
-    bottom: -15px;
-    right: -15px;
   }
 }

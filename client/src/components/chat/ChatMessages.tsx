@@ -1,4 +1,5 @@
 import type { Message as Message } from '../../hooks/useChat';
+import ChatIcon from '../../assets/chatIcon.svg';
 import './ChatMessages.css';
 
 interface ChatMessagesProps {
@@ -10,7 +11,11 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
     <div className="chat-messages">
       {messages.map(message => (
         <div key={message.id} className={`message ${message.sender}-message`}>
-          <div className="message-avatar">{message.sender === 'ai' ? '🎓' : '👤'}</div>
+          {message.sender === 'ai' && (
+            <div className="message-avatar">
+              <img src={ChatIcon} alt="AI" />
+            </div>
+          )}
           <div className="message-content">
             <div className="message-text">{message.content}</div>
             <div className="message-time">

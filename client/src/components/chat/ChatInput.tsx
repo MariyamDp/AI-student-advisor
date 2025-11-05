@@ -1,4 +1,5 @@
 import './ChatInput.css';
+import SendIcon from '../../assets/arrow.svg';
 
 interface ChatInputProps {
   value: string;
@@ -7,27 +8,20 @@ interface ChatInputProps {
   isLoading?: boolean;
 }
 
-const ChatInput = ({ value, onChange, onSend, isLoading }: ChatInputProps) => {
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      onSend();
-    }
-  };
-
+const ChatInput = ({ value, onChange, onSend, isLoading = false }: ChatInputProps) => {
   return (
     <div className="chat-input-container">
       <div className="chat-input-section">
-        <button className="mic-btn">🎤</button>
         <input
           type="text"
           value={value}
           onChange={e => onChange(e.target.value)}
-          onKeyPress={handleKeyPress}
           placeholder="Ask me anything about your academic journey..."
           className="message-input"
+          disabled={isLoading}
         />
-        <button className="send-btn" onClick={onSend} disabled={isLoading || !value.trim()}>
-          {isLoading ? '⏳' : '✈️'}
+        <button className="send-btn" onClick={onSend} disabled={isLoading}>
+          <img src={SendIcon} alt="Send" />
         </button>
       </div>
     </div>

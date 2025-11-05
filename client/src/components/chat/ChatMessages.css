@@ -39,10 +39,11 @@
 }
 
 .user-message .message-avatar {
-  background-color: #e2e8f0;
+  background-color: #efe1e4;
 }
 
 .message-content {
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -56,14 +57,15 @@
 }
 
 .ai-message .message-text {
-  background-color: #f1f5f9;
+  background-color: #f8f9fa;
+  border: 1px solid var(--border-color);
   color: var(--text-primary);
-  border-bottom-left-radius: 0.25rem;
+  border-top-left-radius: 0.25rem;
 }
 
 .user-message .message-text {
-  background-color: var(--primary-red);
-  color: white;
+  background-color: #efe1e4;
+  color: var(--primary-red);
   border-bottom-right-radius: 0.25rem;
 }
 

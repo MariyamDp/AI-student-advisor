@@ -3,6 +3,7 @@ import './CategoriesSection.css';
 interface Category {
   name: string;
   icon: string;
+  notactive: boolean;
 }
 
 interface CategoriesSectionProps {
@@ -15,8 +16,11 @@ const CategoriesSection = ({ categories }: CategoriesSectionProps) => {
       <h3 className="categories-title">Academic Categories</h3>
       <div className="categories-grid">
         {categories.map(category => (
-          <div key={category.name} className="category-item">
-            <span className="category-icon">{category.icon}</span>
+          <div
+            key={category.name}
+            className={`category-item ${category.notactive ? 'notactive' : ''}`}
+          >
+            <img src={category.icon} alt={category.name} className="category-icon" />
             <span className="category-name">{category.name}</span>
           </div>
         ))}
