@@ -93,7 +93,7 @@
   border-color: var(--primary-red);
 }
 
-.send-btn {
+/* .send-btn {
   background-color: var(--primary-red);
   color: white;
   border: none;
@@ -110,7 +110,7 @@
 .send-btn:hover {
   background-color: #991b1b;
   transform: scale(1.05);
-}
+} */
 
 .floating-chat-icon {
   position: absolute;

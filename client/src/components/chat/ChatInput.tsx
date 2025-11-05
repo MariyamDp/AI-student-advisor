@@ -1,5 +1,5 @@
 import './ChatInput.css';
-import SendIcon from '../../assets/sendIcon.svg';
+import SendIcon from '../../assets/arrow.svg';
 
 interface ChatInputProps {
   value: string;
@@ -8,7 +8,7 @@ interface ChatInputProps {
   isLoading?: boolean;
 }
 
-const ChatInput = ({ value, onChange, onSend, isLoading }: ChatInputProps) => {
+const ChatInput = ({ value, onChange, onSend }: ChatInputProps) => {
 
   return (
     <div className="chat-input-container">
@@ -21,7 +21,7 @@ const ChatInput = ({ value, onChange, onSend, isLoading }: ChatInputProps) => {
           placeholder="Ask me anything about your academic journey..."
           className="message-input"
         />
-        <button className="send-btn" onClick={onSend} disabled={isLoading || !value.trim()}>
+        <button className="send-btn" onClick={onSend} >
           <img src={SendIcon} alt="Send" />
         </button>
       </div>

@@ -8,44 +8,21 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: #f8f9fa;
-  border: 1px solid var(--border-color);
   border-radius: 10px;
   padding: 0.75rem 1rem;
 }
-
 .send-btn {
   cursor: pointer;
-}
-
-.send-btn:hover:not(:disabled) {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-
-.message-input {
-  flex: 1;
-  background: none;
+  background-color: transparent;
   border: none;
-  outline: none;
-  font-size: 0.875rem;
-  color: var(--text-primary);
+  width: 32px;
+}
+.send-btn img {
+  width: 100%;
+
 }
 
 .message-input::placeholder {
   color: var(--text-muted);
 }
 
-.send-btn {
-  background-color: var(--primary-red);
-  color: white;
-}
-
-.send-btn:hover:not(:disabled) {
-  background-color: var(--primary-red);
-}
-
-.send-btn:disabled {
-  opacity: 0.5;
-  transform: none;
-  cursor: default;
-}
