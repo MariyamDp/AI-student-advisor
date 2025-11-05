@@ -22,7 +22,7 @@ const ChatInput = ({ value, onChange, onSend, isLoading }: ChatInputProps) => {
           className="message-input"
         />
         <button className="send-btn" onClick={onSend} disabled={isLoading || !value.trim()}>
-          { <img src={SendIcon} alt="Send" />}
+          <img src={SendIcon} alt="Send" />
         </button>
       </div>
     </div>
