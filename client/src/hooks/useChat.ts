@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { sendChatMessage } from '../services/api.service';
+import { useAuth } from '../context/AuthContext';
 
 export interface Message {
   id: string;
@@ -9,6 +10,7 @@ export interface Message {
 }
 
 export const useChat = () => {
+  const { user } = useAuth();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -35,9 +37,19 @@ export const useChat = () => {
       setIsLoading(true);
 
       try {
+        // Prepare inputs for Dify API - student_year is required
+        const inputs: Record<string, string | number | boolean | null | undefined> = {};
+        if (user?.yearOfStudy) {
+          inputs.student_year = user.yearOfStudy;
+        } else {
+          // If yearOfStudy is not set, show a helpful error message
+          throw new Error('Please complete your profile with your year of study to use the chat assistant.');
+        }
+
         const { answer, conversationId: newConversationId } = await sendChatMessage(
           content.trim(),
-          conversationId
+          conversationId,
+          inputs
         );
         if (newConversationId && newConversationId !== conversationId) {
           setConversationId(newConversationId);
@@ -65,7 +77,7 @@ export const useChat = () => {
         setIsLoading(false);
       }
     },
-    [conversationId]
+    [conversationId, user]
   );
 
   const clearMessages = useCallback(() => {
