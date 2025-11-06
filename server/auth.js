@@ -58,7 +58,19 @@ router.post('/signup', (req, res) => {
 });
 
 router.get('/me', authMiddleware, (req, res) => {
-  res.json({ user: { email: req.user.email } });
+  // Debug: Log what's in the JWT token
+  console.log('JWT token decoded data:', JSON.stringify(req.user, null, 2));
+  
+  // Return user data from JWT token (includes profile data if set)
+  const user = {
+    email: req.user.email,
+    name: req.user.name || undefined,
+    major: req.user.major || undefined,
+    yearOfStudy: req.user.yearOfStudy || undefined,
+  };
+  
+  console.log('Returning user data:', JSON.stringify(user, null, 2));
+  res.json({ user });
 });
 
 router.put('/profile', authMiddleware, (req, res) => {
@@ -67,7 +79,7 @@ router.put('/profile', authMiddleware, (req, res) => {
   if (!name || typeof name !== 'string' || !name.trim()) {
     return res.status(400).json({ error: 'name is required' });
   }
-  if (!major || typeof major !== 'string' || !major.trim()) {
+  if (!major || typeof major !== 'string' || !major) {
     return res.status(400).json({ error: 'major is required' });
   }
   if (!yearOfStudy || typeof yearOfStudy !== 'string') {
@@ -75,15 +87,28 @@ router.put('/profile', authMiddleware, (req, res) => {
   }
 
   // TODO: Store profile data in database
-  // For now, we just validate and return the updated user data
+  // For now, we store it in the JWT token by creating a new token with profile data
+  // Note: major is not trimmed to preserve exact value (e.g., "BBA in Management " with trailing space)
   const updatedUser = {
     email: req.user.email,
     name: name.trim(),
-    major: major.trim(),
+    major: major, // Don't trim - preserve exact value for Dify API
     yearOfStudy,
   };
 
-  res.json({ user: updatedUser });
+  // Create a new token with profile data included
+  const tokenPayload = {
+    sub: req.user.email,
+    email: req.user.email,
+    name: updatedUser.name,
+    major: updatedUser.major,
+    yearOfStudy: updatedUser.yearOfStudy,
+  };
+  
+  console.log('Creating new token with payload:', JSON.stringify(tokenPayload, null, 2));
+  const newToken = signToken(tokenPayload);
+
+  res.json({ user: updatedUser, token: newToken });
 });
 
 // Google OAuth: Verify ID token from client
