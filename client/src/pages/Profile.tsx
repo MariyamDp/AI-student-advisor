@@ -18,7 +18,6 @@ const Profile = () => {
   const [name, setName] = useState('');
   const [major, setMajor] = useState('');
   const [yearOfStudy, setYearOfStudy] = useState('');
-  const [school, setSchool] = useState('International School of Economics');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
