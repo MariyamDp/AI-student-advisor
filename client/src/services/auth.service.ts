@@ -5,7 +5,9 @@ const getServerUrl = () => {
     return 'http://localhost:3001';
   }
   // In production, use VITE_SERVER_URL if set, otherwise default to localhost
-  return (import.meta.env as { VITE_SERVER_URL?: string }).VITE_SERVER_URL || 'http://localhost:3001';
+  return (
+    (import.meta.env as { VITE_SERVER_URL?: string }).VITE_SERVER_URL || 'http://localhost:3001'
+  );
 };
 
 const SERVER_URL = getServerUrl();
@@ -71,7 +73,10 @@ export interface ProfileUpdateData {
   yearOfStudy: string;
 }
 
-export async function updateProfile(token: string, data: ProfileUpdateData): Promise<{ user: { email: string; name?: string; major?: string; yearOfStudy?: string } }> {
+export async function updateProfile(
+  token: string,
+  data: ProfileUpdateData
+): Promise<{ user: { email: string; name?: string; major?: string; yearOfStudy?: string } }> {
   const res = await fetch(`${SERVER_URL}/auth/profile`, {
     method: 'PUT',
     headers: {
@@ -86,5 +91,3 @@ export async function updateProfile(token: string, data: ProfileUpdateData): Pro
   }
   return res.json();
 }
-
-

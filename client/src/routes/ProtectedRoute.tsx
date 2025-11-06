@@ -10,5 +10,3 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
 };
 
 export default ProtectedRoute;
-
-

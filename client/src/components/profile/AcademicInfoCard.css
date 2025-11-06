@@ -57,7 +57,9 @@
   font-size: 16px;
   background-color: #f9fafb;
   color: var(--text-primary);
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .academic-field input:disabled {
@@ -75,4 +77,3 @@
   border-color: var(--primary-red);
   box-shadow: 0 0 0 3px rgba(166, 27, 50, 0.1);
 }
-

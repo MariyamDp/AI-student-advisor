@@ -87,7 +87,7 @@ const Profile = () => {
         major: major.trim(),
         yearOfStudy,
       });
-      
+
       // Update the auth context with new profile data
       if (updateProfile) {
         updateProfile({
@@ -96,7 +96,7 @@ const Profile = () => {
           yearOfStudy,
         });
       }
-      
+
       setIsEditing(false);
     } catch (err) {
       const details = err instanceof Error ? err.message : 'Failed to update profile';

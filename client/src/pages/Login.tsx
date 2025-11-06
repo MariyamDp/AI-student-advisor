@@ -47,7 +47,12 @@ const Login = () => {
     <div className="login-page">
       <Header />
       <AuthCard title="Sign in" subtitle="Enter your email to continue">
-        <LoginForm onSubmit={onSubmit} onGoogleSignIn={onGoogleSignIn} loading={loading} error={error} />
+        <LoginForm
+          onSubmit={onSubmit}
+          onGoogleSignIn={onGoogleSignIn}
+          loading={loading}
+          error={error}
+        />
         <p className="login-page-link">
           Don&apos;t have an account? <Link to="/signup">Sign up</Link>
         </p>
@@ -57,5 +62,3 @@ const Login = () => {
 };
 
 export default Login;
-
-

@@ -20,12 +20,7 @@ const UserAvatar = ({ user, size = 'medium' }: UserAvatarProps) => {
     return 'U';
   };
 
-  return (
-    <div className={`user-avatar user-avatar-${size}`}>
-      {getInitials()}
-    </div>
-  );
+  return <div className={`user-avatar user-avatar-${size}`}>{getInitials()}</div>;
 };
 
 export default UserAvatar;
-

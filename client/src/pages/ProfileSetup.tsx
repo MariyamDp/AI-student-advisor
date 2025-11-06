@@ -49,7 +49,7 @@ const ProfileSetup = () => {
         major: major.trim(),
         yearOfStudy,
       });
-      
+
       // Update the auth context with new profile data
       if (updateProfile) {
         updateProfile({
@@ -58,7 +58,7 @@ const ProfileSetup = () => {
           yearOfStudy,
         });
       }
-      
+
       // Navigate to chat after successful profile update
       navigate('/chat');
     } catch (err) {
@@ -126,4 +126,3 @@ const ProfileSetup = () => {
 };
 
 export default ProfileSetup;
-

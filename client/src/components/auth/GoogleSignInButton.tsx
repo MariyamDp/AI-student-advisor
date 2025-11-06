@@ -17,7 +17,7 @@ const GoogleSignInButton = ({ onSuccess, onError, disabled }: GoogleSignInButton
     // Wait for Google Identity Services to load
     const initializeGoogleSignIn = () => {
       if (initializedRef.current || disabled) return;
-      
+
       if (typeof window !== 'undefined' && window.google) {
         try {
           window.google.accounts.id.initialize({
@@ -32,16 +32,13 @@ const GoogleSignInButton = ({ onSuccess, onError, disabled }: GoogleSignInButton
           });
 
           if (buttonRef.current) {
-            window.google.accounts.id.renderButton(
-              buttonRef.current,
-              {
-                type: 'standard',
-                theme: 'outline',
-                size: 'large',
-                text: 'signin_with',
-                width: buttonRef.current.offsetWidth || 300,
-              }
-            );
+            window.google.accounts.id.renderButton(buttonRef.current, {
+              type: 'standard',
+              theme: 'outline',
+              size: 'large',
+              text: 'signin_with',
+              width: buttonRef.current.offsetWidth || 300,
+            });
             initializedRef.current = true;
           }
         } catch (error) {
@@ -91,4 +88,3 @@ const GoogleSignInButton = ({ onSuccess, onError, disabled }: GoogleSignInButton
 };
 
 export default GoogleSignInButton;
-

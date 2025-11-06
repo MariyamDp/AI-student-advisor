@@ -45,7 +45,12 @@ const SignUp = () => {
     <div className="signup-page">
       <Header />
       <AuthCard title="Create account" subtitle="Enter your email and password to get started">
-        <SignUpForm onSubmit={onSubmit} onGoogleSignIn={onGoogleSignIn} loading={loading} error={error} />
+        <SignUpForm
+          onSubmit={onSubmit}
+          onGoogleSignIn={onGoogleSignIn}
+          loading={loading}
+          error={error}
+        />
         <p className="signup-page-link">
           Already have an account? <Link to="/login">Sign in</Link>
         </p>

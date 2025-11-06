@@ -43,7 +43,9 @@ export const useChat = () => {
           inputs.student_year = user.yearOfStudy;
         } else {
           // If yearOfStudy is not set, show a helpful error message
-          throw new Error('Please complete your profile with your year of study to use the chat assistant.');
+          throw new Error(
+            'Please complete your profile with your year of study to use the chat assistant.'
+          );
         }
 
         const { answer, conversationId: newConversationId } = await sendChatMessage(

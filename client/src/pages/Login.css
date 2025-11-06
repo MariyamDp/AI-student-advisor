@@ -1,22 +1,21 @@
 .login-page {
-    min-height: 100vh;
-    background-color: var(--bg-white);
-  }
+  min-height: 100vh;
+  background-color: var(--bg-white);
+}
 
-  .login-page-link {
-    margin-top: 16px;
-    text-align: center;
-    font-size: 16px;
-    color: var(--text-secondary);
-  }
-  
-  .login-page-link a {
-    color: var(--primary-red);
-    text-decoration: none;
-    font-weight: 500;
-  }
-  
-  .login-page-link a:hover {
-    text-decoration: underline;
-  }
-  
+.login-page-link {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.login-page-link a {
+  color: var(--primary-red);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-page-link a:hover {
+  text-decoration: underline;
+}

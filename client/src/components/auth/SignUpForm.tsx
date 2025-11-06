@@ -51,7 +51,12 @@ const SignUpForm = ({ onSubmit, onGoogleSignIn, loading, error }: SignUpFormProp
           onChange={e => setPassword(e.target.value)}
           error={null}
         />
-        <Button className="signup-form-button" variant="primary" disabled={!!loading || !email.trim() || !password.trim()} type="submit">
+        <Button
+          className="signup-form-button"
+          variant="primary"
+          disabled={!!loading || !email.trim() || !password.trim()}
+          type="submit"
+        >
           {loading ? 'Creating account…' : 'Sign up'}
         </Button>
       </form>
@@ -60,7 +65,7 @@ const SignUpForm = ({ onSubmit, onGoogleSignIn, loading, error }: SignUpFormProp
       </div>
       <GoogleSignInButton
         onSuccess={handleGoogleSuccess}
-        onError={(err) => console.error('Google Sign-In error:', err)}
+        onError={err => console.error('Google Sign-In error:', err)}
         disabled={loading || googleLoading}
       />
     </>

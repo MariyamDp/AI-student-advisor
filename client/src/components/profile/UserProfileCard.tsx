@@ -54,7 +54,7 @@ const UserProfileCard = ({
         <>
           <h2 className="user-name">{user?.name || 'Your Name'}</h2>
           <p className="user-major">{user?.major || 'Your Major'}</p>
-          <p className="user-year">Year {user?.yearOfStudy || 'N/A'}</p>
+          <p className="user-year">Year of Study: {user?.yearOfStudy || 'N/A'}</p>
           {/* <div className="user-school">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M8 0L0 4V6C0 9.31 2.69 12 6 12H8V16H10V12H12C15.31 12 18 9.31 18 6V4L10 0L8 0Z" fill="currentColor"/>
@@ -71,4 +71,3 @@ const UserProfileCard = ({
 };
 
 export default UserProfileCard;
-

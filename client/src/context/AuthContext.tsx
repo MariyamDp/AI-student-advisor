@@ -1,5 +1,10 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { getProfile, login as loginApi, signup as signupApi, loginWithGoogle } from '../services/auth.service';
+import {
+  getProfile,
+  login as loginApi,
+  signup as signupApi,
+  loginWithGoogle,
+} from '../services/auth.service';
 
 interface User {
   email: string;
@@ -75,16 +80,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
-  const value = useMemo<AuthContextValue>(() => ({
-    user,
-    token,
-    isAuthenticated: Boolean(token),
-    login,
-    signup,
-    loginWithGoogle: handleGoogleLogin,
-    logout,
-    updateProfile,
-  }), [user, token]);
+  const value = useMemo<AuthContextValue>(
+    () => ({
+      user,
+      token,
+      isAuthenticated: Boolean(token),
+      login,
+      signup,
+      loginWithGoogle: handleGoogleLogin,
+      logout,
+      updateProfile,
+    }),
+    [user, token]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
@@ -94,5 +102,3 @@ export const useAuth = (): AuthContextValue => {
   if (!ctx) throw new Error('useAuth must be used within AuthProvider');
   return ctx;
 };
-
-

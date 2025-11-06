@@ -19,5 +19,3 @@ const AuthCard = ({ title, subtitle, children }: AuthCardProps) => {
 };
 
 export default AuthCard;
-
-
