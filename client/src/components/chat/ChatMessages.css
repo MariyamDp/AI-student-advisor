@@ -56,6 +56,10 @@
   line-height: 1.5;
 }
 
+.message-text strong {
+  font-weight: 600;
+}
+
 .ai-message .message-text {
   background-color: #f8f9fa;
   border: 1px solid var(--border-color);
