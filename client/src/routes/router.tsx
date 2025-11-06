@@ -1,6 +1,9 @@
 import { lazy } from 'react';
 import Home from '../pages/Home';
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute';
+import Login from '../pages/Login';
+import SignUp from '../pages/SignUp';
 
 const ChatAssistant = lazy(() => import('../pages/ChatAssistant'));
 
@@ -8,7 +11,16 @@ export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route index element={<Home />} />
-      <Route path="chat" element={<ChatAssistant />} />
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<SignUp />} />
+      <Route
+        path="chat"
+        element={
+          <ProtectedRoute>
+            <ChatAssistant />
+          </ProtectedRoute>
+        }
+      />
     </Route>
   )
 );

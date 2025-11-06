@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import authRoutes, { authMiddleware } from './auth.js';
 
 dotenv.config();
 
@@ -12,19 +13,23 @@ const DIFY_BASE_URL = process.env.BASE_URL || 'https://api.dify.ai/v1';
 
 app.use(
   cors({
-    origin: ['https://ai-student-advisor-1.onrender.com'],
+    origin: ['https://ai-student-advisor-1.onrender.com', 'http://localhost:5175', 'http://localhost:5173', 'http://localhost:3000'],
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
   })
 );
 
 app.use(express.json());
 
+// Auth routes
+app.use('/auth', authRoutes);
+
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
-app.post('/api/chat', async (req, res) => {
+app.post('/api/chat', authMiddleware, async (req, res) => {
   try {
     const { query, conversationId, inputs } = req.body || {};
     if (!DIFY_API_KEY) {
