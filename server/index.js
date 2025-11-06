@@ -14,7 +14,7 @@ const DIFY_BASE_URL = process.env.BASE_URL || 'https://api.dify.ai/v1';
 app.use(
   cors({
     origin: ['https://ai-student-advisor-1.onrender.com', 'http://localhost:5175', 'http://localhost:5173', 'http://localhost:3000'],
-    methods: ['GET', 'POST'],
+    methods: ['GET', 'POST', 'PUT'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   })

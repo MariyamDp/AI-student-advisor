@@ -65,4 +65,26 @@ export async function loginWithGoogle(idToken: string): Promise<LoginResponse> {
   return res.json();
 }
 
+export interface ProfileUpdateData {
+  name: string;
+  major: string;
+  yearOfStudy: string;
+}
+
+export async function updateProfile(token: string, data: ProfileUpdateData): Promise<{ user: { email: string; name?: string; major?: string; yearOfStudy?: string } }> {
+  const res = await fetch(`${SERVER_URL}/auth/profile`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Profile update error (${res.status}): ${text}`);
+  }
+  return res.json();
+}
+
 

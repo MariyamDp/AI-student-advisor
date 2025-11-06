@@ -1,7 +1,12 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 import { getProfile, login as loginApi, signup as signupApi, loginWithGoogle } from '../services/auth.service';
 
-interface User { email: string }
+interface User {
+  email: string;
+  name?: string;
+  major?: string;
+  yearOfStudy?: string;
+}
 
 interface AuthContextValue {
   user: User | null;
@@ -11,6 +16,7 @@ interface AuthContextValue {
   signup: (email: string, password: string) => Promise<void>;
   loginWithGoogle: (idToken: string) => Promise<void>;
   logout: () => void;
+  updateProfile?: (profileData: { name: string; major: string; yearOfStudy: string }) => void;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -60,6 +66,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(null);
   };
 
+  const updateProfile = (profileData: { name: string; major: string; yearOfStudy: string }) => {
+    if (user) {
+      setUser({
+        ...user,
+        ...profileData,
+      });
+    }
+  };
+
   const value = useMemo<AuthContextValue>(() => ({
     user,
     token,
@@ -68,6 +83,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     signup,
     loginWithGoogle: handleGoogleLogin,
     logout,
+    updateProfile,
   }), [user, token]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
