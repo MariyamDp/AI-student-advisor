@@ -4,6 +4,10 @@ import { useAuth } from '../context/AuthContext';
 import AuthCard from '../components/auth/AuthCard';
 import SignUpForm from '../components/auth/SignUpForm';
 import Header from '../components/nav/Header';
+
+import { GoogleLogin } from '@react-oauth/google';
+import { jwtDecode } from 'jwt-decode';
+
 import './SignUp.css';
 
 const SignUp = () => {
@@ -27,11 +31,54 @@ const SignUp = () => {
     }
   };
 
+  const handleGoogleSignUp = async (credentialResponse: unknown) => {
+    setError(null);
+    setLoading(true);
+
+    try {
+      if (
+        typeof credentialResponse !== 'object' ||
+        credentialResponse === null ||
+        !('credential' in credentialResponse)
+      ) {
+        setError('Google login response is invalid');
+        return;
+      }
+
+      const { credential } = credentialResponse as { credential: string };
+
+      const userData: { email?: string } = jwtDecode(credential);
+
+      if (!userData.email) {
+        setError('Google account has no email');
+        return;
+      }
+
+      await signup(userData.email);
+
+      // Делаем мини-паузу, чтобы auth context успел обновиться
+      setTimeout(() => navigate('/chat'), 100);
+    } catch (err) {
+      console.error('Google SignUp Error:', err);
+      setError('Google sign up failed');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="signup-page">
       <Header />
       <AuthCard title="Create account" subtitle="Enter your email to get started">
         <SignUpForm onSubmit={onSubmit} loading={loading} error={error} />
+
+        <div className="google-login-wrapper">
+          <GoogleLogin
+            onSuccess={handleGoogleSignUp}
+            onError={() => setError('Google sign up failed')}
+          />
+        </div>
+
         <p className="signup-page-link">
           Already have an account? <Link to="/login">Sign in</Link>
         </p>

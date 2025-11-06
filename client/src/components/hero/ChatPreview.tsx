@@ -7,8 +7,8 @@ const ChatPreview = () => {
       <div className="chat-preview">
         <div className="chat-header">
           <div className="chat-logo">
-            <span className="logo-icon">🎓</span>
-            <span>AI Agent</span>
+            <img src="/logomain.png" alt="logo" className="chat-logo-img" />
+            <span>AI Advisor</span>
           </div>
         </div>
 
@@ -37,7 +37,9 @@ const ChatPreview = () => {
 
         <div className="chat-input">
           <div className="message-input">Type your message here...</div>
-          <button className="send-btn">✈️</button>
+          <button className="send-btn">
+            <img src="/arrow.svg" alt="send" className="send-icon" />
+          </button>
         </div>
       </div>
 
