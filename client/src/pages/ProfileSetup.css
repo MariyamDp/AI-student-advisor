@@ -1,0 +1,49 @@
+/* Profile Setup Page (Initial Setup) */
+.profile-setup-page {
+  min-height: 100vh;
+  background-color: var(--bg-gray);
+}
+
+.profile-setup-center {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-setup-card {
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  border: 1px solid var(--primary-red);
+  border-radius: 12px;
+  width: 360px;
+}
+
+.profile-setup-title {
+  margin-bottom: 12px;
+}
+
+.profile-setup-subtitle {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.profile-setup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-setup-button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.profile-error-message {
+  color: var(--primary-red);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+

@@ -20,7 +20,7 @@ const Login = () => {
     setError(null);
     try {
       await login(val.trim());
-      navigate('/chat');
+      navigate('/profile', { state: { isInitialSetup: true } });
     } catch (err) {
       const details = err instanceof Error ? err.message : 'Login failed';
       setError(details);
@@ -34,7 +34,7 @@ const Login = () => {
     setError(null);
     try {
       await loginWithGoogle(idToken);
-      navigate('/chat');
+      navigate('/profile', { state: { isInitialSetup: true } });
     } catch (err) {
       const details = err instanceof Error ? err.message : 'Google login failed';
       setError(details);

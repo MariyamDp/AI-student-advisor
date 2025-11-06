@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
 import ChatHeader from '../components/chat/ChatHeader';
 import Sidebar from '../components/chat/Sidebar';
@@ -16,6 +17,7 @@ const ChatAssistant = () => {
   const { messages, isLoading, sendMessage } = useChat();
   const [inputValue, setInputValue] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const location = useLocation();
 
   const handleSendMessage = async () => {
     if (!inputValue.trim() || isLoading) return;
@@ -41,11 +43,11 @@ const ChatAssistant = () => {
   ];
 
   const navItems = [
-    { name: 'Chat Assistant', path: '/chat', active: true },
-    { name: 'Milestones', path: '/milestones', active: false },
-    { name: 'Dashboard', path: '/dashboard', active: false },
-    { name: 'Profile', path: '/profile', active: false },
-    { name: 'Resources', path: '/resources', active: false },
+    { name: 'Chat Assistant', path: '/chat', active: location.pathname === '/chat' },
+    { name: 'Milestones', path: '/milestones', active: location.pathname === '/milestones' },
+    { name: 'Dashboard', path: '/dashboard', active: location.pathname === '/dashboard' },
+    { name: 'Profile', path: '/profile', active: location.pathname === '/profile' },
+    { name: 'Resources', path: '/resources', active: location.pathname === '/resources' },
   ];
 
   return (

@@ -61,6 +61,31 @@ router.get('/me', authMiddleware, (req, res) => {
   res.json({ user: { email: req.user.email } });
 });
 
+router.put('/profile', authMiddleware, (req, res) => {
+  const { name, major, yearOfStudy } = req.body || {};
+  
+  if (!name || typeof name !== 'string' || !name.trim()) {
+    return res.status(400).json({ error: 'name is required' });
+  }
+  if (!major || typeof major !== 'string' || !major.trim()) {
+    return res.status(400).json({ error: 'major is required' });
+  }
+  if (!yearOfStudy || typeof yearOfStudy !== 'string') {
+    return res.status(400).json({ error: 'yearOfStudy is required' });
+  }
+
+  // TODO: Store profile data in database
+  // For now, we just validate and return the updated user data
+  const updatedUser = {
+    email: req.user.email,
+    name: name.trim(),
+    major: major.trim(),
+    yearOfStudy,
+  };
+
+  res.json({ user: updatedUser });
+});
+
 // Google OAuth: Verify ID token from client
 router.post('/google', async (req, res) => {
   try {

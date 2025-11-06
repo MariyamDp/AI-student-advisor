@@ -17,9 +17,6 @@ const ChatHeader = ({ onMenuClick, isSidebarOpen = false }: ChatHeaderProps) => 
           <span className="logo-title">MNU Portal</span>
         </div>
       </div>
-      <div className="header-right">
-        <div className="user-avatar">AS</div>
-      </div>
     </header>
   );
 };

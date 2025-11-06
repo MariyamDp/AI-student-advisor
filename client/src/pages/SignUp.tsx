@@ -18,7 +18,7 @@ const SignUp = () => {
     setError(null);
     try {
       await signup(email.trim(), password);
-      navigate('/chat');
+      navigate('/profile', { state: { isInitialSetup: true } });
     } catch (err) {
       const details = err instanceof Error ? err.message : 'Sign up failed';
       setError(details);
@@ -32,7 +32,7 @@ const SignUp = () => {
     setError(null);
     try {
       await loginWithGoogle(idToken);
-      navigate('/chat');
+      navigate('/profile', { state: { isInitialSetup: true } });
     } catch (err) {
       const details = err instanceof Error ? err.message : 'Google sign up failed';
       setError(details);
