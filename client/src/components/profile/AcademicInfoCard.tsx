@@ -4,22 +4,18 @@ interface AcademicInfoCardProps {
   name: string;
   email: string;
   major: string;
-  school: string;
   isEditing: boolean;
   onNameChange: (value: string) => void;
   onMajorChange: (value: string) => void;
-  onSchoolChange: (value: string) => void;
 }
 
 const AcademicInfoCard = ({
   name,
   email,
   major,
-  school,
   isEditing,
   onNameChange,
   onMajorChange,
-  onSchoolChange,
 }: AcademicInfoCardProps) => {
   return (
     <div className="profile-card profile-card-academic">

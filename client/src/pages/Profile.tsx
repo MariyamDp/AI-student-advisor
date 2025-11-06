@@ -65,7 +65,6 @@ const Profile = () => {
       setMajor(user.major || '');
       setYearOfStudy(user.yearOfStudy || '');
     }
-    setSchool('International School of Economics'); // Reset to default
     setError(null);
   };
 
@@ -136,7 +135,6 @@ const Profile = () => {
                 name={name}
                 major={major}
                 yearOfStudy={yearOfStudy}
-                school={school}
                 isEditing={isEditing}
                 loading={loading}
                 error={error}
@@ -151,11 +149,9 @@ const Profile = () => {
                 name={name}
                 email={user?.email || ''}
                 major={major}
-                school={school}
                 isEditing={isEditing}
                 onNameChange={setName}
                 onMajorChange={setMajor}
-                onSchoolChange={setSchool}
               />
             </div>
           </div>

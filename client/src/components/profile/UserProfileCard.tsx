@@ -8,7 +8,6 @@ interface UserProfileCardProps {
   name: string;
   major: string;
   yearOfStudy: string;
-  school: string;
   isEditing: boolean;
   loading?: boolean;
   error?: string | null;
@@ -25,7 +24,6 @@ const UserProfileCard = ({
   name,
   major,
   yearOfStudy,
-  school,
   isEditing,
   loading = false,
   error,
