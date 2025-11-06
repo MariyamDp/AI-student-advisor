@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { getProfile, login as loginApi, signup as signupApi } from '../services/auth.service';
+import { getProfile, login as loginApi, signup as signupApi, loginWithGoogle } from '../services/auth.service';
 
 interface User { email: string }
 
@@ -8,7 +8,8 @@ interface AuthContextValue {
   token: string | null;
   isAuthenticated: boolean;
   login: (email: string) => Promise<void>;
-  signup: (email: string) => Promise<void>;
+  signup: (email: string, password: string) => Promise<void>;
+  loginWithGoogle: (idToken: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -39,8 +40,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     setUser(res.user);
   };
 
-  const signup = async (email: string) => {
-    const res = await signupApi(email);
+  const signup = async (email: string, password: string) => {
+    const res = await signupApi(email, password);
+    localStorage.setItem('auth_token', res.token);
+    setToken(res.token);
+    setUser(res.user);
+  };
+
+  const handleGoogleLogin = async (idToken: string) => {
+    const res = await loginWithGoogle(idToken);
     localStorage.setItem('auth_token', res.token);
     setToken(res.token);
     setUser(res.user);
@@ -58,6 +66,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     isAuthenticated: Boolean(token),
     login,
     signup,
+    loginWithGoogle: handleGoogleLogin,
     logout,
   }), [user, token]);
 
