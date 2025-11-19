@@ -10,7 +10,7 @@ import { updateProfile as updateProfileApi } from '../services/auth.service';
 import './Profile.css';
 
 const Profile = () => {
-  const { user, token, updateProfile } = useAuth();
+  const { user, token, updateProfile, refreshProfile } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -68,7 +68,7 @@ const Profile = () => {
   };
 
   const handleSave = async () => {
-    if (!name.trim() || !major.trim() || !yearOfStudy) {
+    if (!name.trim() || !major || !yearOfStudy) {
       setError('Please fill in all fields');
       return;
     }
@@ -82,19 +82,28 @@ const Profile = () => {
     setError(null);
 
     try {
-      await updateProfileApi(token, {
+      const response = await updateProfileApi(token, {
         name: name.trim(),
-        major: major.trim(),
+        major: major,
         yearOfStudy,
       });
 
-      // Update the auth context with new profile data
-      if (updateProfile) {
-        updateProfile({
-          name: name.trim(),
-          major: major.trim(),
-          yearOfStudy,
-        });
+      // Save new token if provided (contains updated profile data)
+      if (response.token) {
+        localStorage.setItem('auth_token', response.token);
+        // Refresh profile from the new token using AuthContext method
+        if (refreshProfile) {
+          await refreshProfile();
+        }
+      } else {
+        // Update the auth context with new profile data (fallback if no token returned)
+        if (updateProfile) {
+          updateProfile({
+            name: name.trim(),
+            major: major,
+            yearOfStudy,
+          });
+        }
       }
 
       setIsEditing(false);

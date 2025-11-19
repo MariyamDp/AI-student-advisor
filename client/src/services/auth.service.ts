@@ -76,7 +76,7 @@ export interface ProfileUpdateData {
 export async function updateProfile(
   token: string,
   data: ProfileUpdateData
-): Promise<{ user: { email: string; name?: string; major?: string; yearOfStudy?: string } }> {
+): Promise<{ user: { email: string; name?: string; major?: string; yearOfStudy?: string }; token?: string }> {
   const res = await fetch(`${SERVER_URL}/auth/profile`, {
     method: 'PUT',
     headers: {

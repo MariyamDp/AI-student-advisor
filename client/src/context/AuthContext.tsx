@@ -22,6 +22,7 @@ interface AuthContextValue {
   loginWithGoogle: (idToken: string) => Promise<void>;
   logout: () => void;
   updateProfile?: (profileData: { name: string; major: string; yearOfStudy: string }) => void;
+  refreshProfile?: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | undefined>(undefined);
@@ -80,6 +81,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  const refreshProfile = async () => {
+    const stored = localStorage.getItem('auth_token');
+    if (stored) {
+      try {
+        const profileResponse = await getProfile(stored);
+        setUser(profileResponse.user);
+        setToken(stored);
+      } catch (error) {
+        console.error('Failed to refresh profile:', error);
+      }
+    }
+  };
+
   const value = useMemo<AuthContextValue>(
     () => ({
       user,
@@ -90,6 +104,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       loginWithGoogle: handleGoogleLogin,
       logout,
       updateProfile,
+      refreshProfile,
     }),
     [user, token]
   );

@@ -31,7 +31,7 @@ const ProfileEditForm = ({
   const [localError, setLocalError] = useState<string | null>(null);
 
   const handleSave = () => {
-    if (!name.trim() || !major.trim() || !yearOfStudy) {
+    if (!name.trim() || !major || !yearOfStudy) {
       setLocalError('Please fill in all fields');
       return;
     }
@@ -50,13 +50,24 @@ const ProfileEditForm = ({
         onChange={e => onNameChange(e.target.value)}
         error={displayError && !name.trim() ? 'Name is required' : null}
       />
-      <Input
-        type="text"
-        placeholder="Your major"
-        value={major}
-        onChange={e => onMajorChange(e.target.value)}
-        error={displayError && !major.trim() ? 'Major is required' : null}
-      />
+      <div className="input-wrapper">
+        <select
+          className={`input ${displayError && !major ? 'input-error' : ''}`}
+          value={major}
+          onChange={e => onMajorChange(e.target.value)}
+        >
+          <option value="">Select your major</option>
+          <option value="BBA in IT">BBA in IT</option>
+          <option value="BBA in Accounting">BBA in Accounting</option>
+          <option value="BBA in Finance">BBA in Finance</option>
+          <option value="BBA in Marketing">BBA in Marketing</option>
+          <option value="BBA in Management ">BBA in Management</option>
+          <option value="BBA in Economics and Data Science">BBA in Economics and Data Science</option>
+        </select>
+        {displayError && !major && (
+          <div className="input-error-message">Major is required</div>
+        )}
+      </div>
       <div className="input-wrapper">
         <select
           className={`input ${displayError && !yearOfStudy ? 'input-error' : ''}`}
@@ -74,7 +85,7 @@ const ProfileEditForm = ({
           <div className="input-error-message">Year of study is required</div>
         )}
       </div>
-      {displayError && name.trim() && major.trim() && yearOfStudy && (
+      {displayError && name.trim() && major && yearOfStudy && (
         <div className="profile-error-message">{displayError}</div>
       )}
       <div className="profile-edit-actions">
@@ -84,7 +95,7 @@ const ProfileEditForm = ({
         <Button
           variant="primary"
           onClick={handleSave}
-          disabled={loading || !name.trim() || !major.trim() || !yearOfStudy}
+          disabled={loading || !name.trim() || !major || !yearOfStudy}
         >
           {loading ? 'Saving...' : 'Save Changes'}
         </Button>

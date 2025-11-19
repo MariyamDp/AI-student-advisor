@@ -67,7 +67,7 @@ router.put('/profile', authMiddleware, (req, res) => {
   if (!name || typeof name !== 'string' || !name.trim()) {
     return res.status(400).json({ error: 'name is required' });
   }
-  if (!major || typeof major !== 'string' || !major.trim()) {
+  if (!major || typeof major !== 'string' || !major) {
     return res.status(400).json({ error: 'major is required' });
   }
   if (!yearOfStudy || typeof yearOfStudy !== 'string') {
