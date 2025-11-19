@@ -10,7 +10,7 @@ export interface Message {
 }
 
 export const useChat = () => {
-  const { user } = useAuth();
+  const { user, refreshProfile } = useAuth();
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -37,16 +37,49 @@ export const useChat = () => {
       setIsLoading(true);
 
       try {
-        // Prepare inputs for Dify API - student_year is required
+        // Refresh profile data if missing to ensure we have latest data from JWT
+        let currentUser = user;
+        if (!user?.major || !user?.yearOfStudy) {
+          console.log('Profile data missing, refreshing...');
+          if (refreshProfile) {
+            await refreshProfile();
+            // Get updated user from context - we'll need to wait for next render
+            // For now, try to get it from localStorage token
+            const { getProfile } = await import('../services/auth.service');
+            const token = localStorage.getItem('auth_token');
+            if (token) {
+              const profileResponse = await getProfile(token);
+              currentUser = profileResponse.user;
+            }
+          }
+        }
+
+        // Debug: Log user object to see what data we have
+        console.log('Current user object:', currentUser);
+        console.log('User yearOfStudy:', currentUser?.yearOfStudy);
+        console.log('User major:', currentUser?.major);
+
+        // Prepare inputs for Dify API - student_year and major are used to personalize responses
         const inputs: Record<string, string | number | boolean | null | undefined> = {};
-        if (user?.yearOfStudy) {
-          inputs.student_year = user.yearOfStudy;
+        if (currentUser?.yearOfStudy) {
+          inputs.student_year = currentUser.yearOfStudy;
         } else {
           // If yearOfStudy is not set, show a helpful error message
           throw new Error(
             'Please complete your profile with your year of study to use the chat assistant.'
           );
         }
+        if (currentUser?.major) {
+          inputs.student_major = currentUser.major;
+        } else {
+          // If major is not set, show a helpful error message
+          throw new Error(
+            'Please complete your profile with your major to use the chat assistant.'
+          );
+        }
+
+        // Debug: Log inputs being sent to API
+        console.log('Sending chat message with inputs:', inputs);
 
         const { answer, conversationId: newConversationId } = await sendChatMessage(
           content.trim(),
@@ -79,7 +112,7 @@ export const useChat = () => {
         setIsLoading(false);
       }
     },
-    [conversationId, user]
+    [conversationId, user, refreshProfile]
   );
 
   const clearMessages = useCallback(() => {

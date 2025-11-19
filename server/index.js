@@ -39,6 +39,9 @@ app.post('/api/chat', authMiddleware, async (req, res) => {
       return res.status(400).json({ error: 'query is required' });
     }
 
+    // Debug: Log inputs received from client
+    console.log('Received inputs from client:', inputs);
+
     const url = `${DIFY_BASE_URL}/chat-messages`;
     const payload = {
       inputs: inputs || {},
@@ -47,6 +50,9 @@ app.post('/api/chat', authMiddleware, async (req, res) => {
       conversation_id: conversationId || undefined,
       user: req.headers['x-user-id'] || req.ip || 'anonymous',
     };
+
+    // Debug: Log payload being sent to Dify
+    console.log('Sending to Dify API:', JSON.stringify(payload, null, 2));
 
     const response = await axios.post(url, payload, {
       headers: {
