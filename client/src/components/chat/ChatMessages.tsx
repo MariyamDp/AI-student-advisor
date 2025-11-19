@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import type { Message as Message } from '../../hooks/useChat';
 import ChatIcon from '../../assets/chatIcon.svg';
 import './ChatMessages.css';
@@ -13,8 +14,27 @@ const parseMarkdownBold = (text: string): string => {
 };
 
 const ChatMessages = ({ messages }: ChatMessagesProps) => {
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+
+  const scrollToBottom = () => {
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      scrollToBottom();
+    }, 0);
+    
+    return () => clearTimeout(timeoutId);
+  }, [messages]);
+
   return (
-    <div className="chat-messages">
+    <div className="chat-messages" ref={messagesContainerRef}>
       {messages.map(message => (
         <div key={message.id} className={`message ${message.sender}-message`}>
           {message.sender === 'ai' && (
