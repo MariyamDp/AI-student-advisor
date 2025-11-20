@@ -5,7 +5,7 @@ import Input from '../input/Input';
 import GoogleSignInButton from './GoogleSignInButton';
 
 interface LoginFormProps {
-  onSubmit: (email: string) => Promise<void> | void;
+  onSubmit: (email: string, password: string) => Promise<void> | void;
   onGoogleSignIn?: (idToken: string) => Promise<void> | void;
   loading?: boolean;
   error?: string | null;
@@ -13,12 +13,13 @@ interface LoginFormProps {
 
 const LoginForm = ({ onSubmit, onGoogleSignIn, loading, error }: LoginFormProps) => {
   const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [googleLoading, setGoogleLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) return;
-    await onSubmit(email.trim());
+    if (!email.trim() || !password.trim()) return;
+    await onSubmit(email.trim(), password);
   };
 
   const handleGoogleSuccess = async (idToken: string) => {
@@ -41,12 +42,19 @@ const LoginForm = ({ onSubmit, onGoogleSignIn, loading, error }: LoginFormProps)
           placeholder="you@example.com"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          error={null}
+        />
+        <Input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={e => setPassword(e.target.value)}
           error={error}
         />
         <Button
           className="login-form-button"
           variant="primary"
-          disabled={!!loading || !email.trim()}
+          disabled={!!loading || !email.trim() || !password.trim()}
           type="submit"
         >
           {loading ? 'Signing in…' : 'Login'}
