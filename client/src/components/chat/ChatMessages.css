@@ -1,11 +1,18 @@
 /* Chat Messages */
 .chat-messages {
   flex: 1;
+  min-height: 0;
   overflow-y: auto;
   padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.chat-messages::-webkit-scrollbar {
+  display: none;
 }
 
 .message {
