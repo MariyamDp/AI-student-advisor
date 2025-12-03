@@ -17,7 +17,7 @@ interface AuthContextValue {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
-  login: (email: string) => Promise<void>;
+  login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   loginWithGoogle: (idToken: string) => Promise<void>;
   logout: () => void;
@@ -45,8 +45,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     }
   }, []);
 
-  const login = async (email: string) => {
-    const res = await loginApi(email);
+  const login = async (email: string, password: string) => {
+    const res = await loginApi(email, password);
     localStorage.setItem('auth_token', res.token);
     setToken(res.token);
     setUser(res.user);
