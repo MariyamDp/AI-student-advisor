@@ -9,7 +9,8 @@
     "dev": "nodemon index.js",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "prepare": "cd .. && husky ./server/.husky"
+    "prepare": "cd .. && husky ./server/.husky",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.0.0",
