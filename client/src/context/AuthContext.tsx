@@ -17,6 +17,7 @@ interface AuthContextValue {
   user: User | null;
   token: string | null;
   isAuthenticated: boolean;
+  isLoading: boolean;
   login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   loginWithGoogle: (idToken: string) => Promise<void>;
@@ -30,6 +31,7 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [token, setToken] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const stored = localStorage.getItem('auth_token');
@@ -41,29 +43,40 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           localStorage.removeItem('auth_token');
           setToken(null);
           setUser(null);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
+    } else {
+      setIsLoading(false);
     }
   }, []);
 
   const login = async (email: string, password: string) => {
+    setIsLoading(true);
     const res = await loginApi(email, password);
     localStorage.setItem('auth_token', res.token);
     setToken(res.token);
     setUser(res.user);
+    setIsLoading(false);
   };
 
   const signup = async (email: string, password: string) => {
+    setIsLoading(true);
     const res = await signupApi(email, password);
     localStorage.setItem('auth_token', res.token);
     setToken(res.token);
     setUser(res.user);
+    setIsLoading(false);
   };
 
   const handleGoogleLogin = async (idToken: string) => {
+    setIsLoading(true);
     const res = await loginWithGoogle(idToken);
     localStorage.setItem('auth_token', res.token);
     setToken(res.token);
     setUser(res.user);
+    setIsLoading(false);
   };
 
   const logout = () => {
@@ -85,11 +98,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const stored = localStorage.getItem('auth_token');
     if (stored) {
       try {
+        setIsLoading(true);
         const profileResponse = await getProfile(stored);
         setUser(profileResponse.user);
         setToken(stored);
       } catch (error) {
         console.error('Failed to refresh profile:', error);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -99,6 +115,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       user,
       token,
       isAuthenticated: Boolean(token),
+      isLoading,
       login,
       signup,
       loginWithGoogle: handleGoogleLogin,
@@ -106,7 +123,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       updateProfile,
       refreshProfile,
     }),
-    [user, token]
+    [user, token, isLoading]
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
