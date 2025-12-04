@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import axios from 'axios';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import authRoutes, { authMiddleware } from './auth.js';
 
@@ -166,17 +167,21 @@ app.post('/api/chat', authMiddleware, async (req, res) => {
 if (process.env.NODE_ENV === 'production') {
   const clientDistPath = path.resolve(__dirname, '../client/dist');
 
-  // Serve static assets from the React build
-  app.use(express.static(clientDistPath));
+  if (fs.existsSync(clientDistPath)) {
+    // Serve static assets from the React build
+    app.use(express.static(clientDistPath));
 
-  // Fallback to index.html for any non-API route so browser refresh works
-  app.get('*', (req, res, next) => {
-    if (req.path.startsWith('/auth') || req.path.startsWith('/api') || req.path.startsWith('/health')) {
-      return next();
-    }
+    // Fallback to index.html for any non-API route so browser refresh works
+    app.get('*', (req, res, next) => {
+      if (req.path.startsWith('/auth') || req.path.startsWith('/api') || req.path.startsWith('/health')) {
+        return next();
+      }
 
-    return res.sendFile(path.join(clientDistPath, 'index.html'));
-  });
+      return res.sendFile(path.join(clientDistPath, 'index.html'));
+    });
+  } else {
+    console.warn(`Client build directory not found at ${clientDistPath}. Run "cd client && npm run build" before starting the server.`);
+  }
 }
 
 app.listen(PORT, () => {
