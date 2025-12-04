@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import axios from 'axios';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import authRoutes, { authMiddleware } from './auth.js';
 
 dotenv.config();
@@ -10,6 +12,10 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const DIFY_API_KEY = process.env.API_KEY;
 const DIFY_BASE_URL = process.env.BASE_URL || 'https://api.dify.ai/v1';
+
+// Resolve __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(
   cors({
@@ -155,6 +161,23 @@ app.post('/api/chat', authMiddleware, async (req, res) => {
     }
   }
 });
+
+// In production, serve the React client and support SPA routing
+if (process.env.NODE_ENV === 'production') {
+  const clientDistPath = path.resolve(__dirname, '../client/dist');
+
+  // Serve static assets from the React build
+  app.use(express.static(clientDistPath));
+
+  // Fallback to index.html for any non-API route so browser refresh works
+  app.get('*', (req, res, next) => {
+    if (req.path.startsWith('/auth') || req.path.startsWith('/api') || req.path.startsWith('/health')) {
+      return next();
+    }
+
+    return res.sendFile(path.join(clientDistPath, 'index.html'));
+  });
+}
 
 app.listen(PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
