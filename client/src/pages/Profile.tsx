@@ -45,10 +45,7 @@ const Profile = () => {
 
   const navItems = [
     { name: 'Chat Assistant', path: '/chat', active: location.pathname === '/chat' },
-    { name: 'Milestones', path: '/milestones', active: location.pathname === '/milestones' },
-    { name: 'Dashboard', path: '/dashboard', active: location.pathname === '/dashboard' },
     { name: 'Profile', path: '/profile', active: location.pathname === '/profile' },
-    { name: 'Resources', path: '/resources', active: location.pathname === '/resources' },
   ];
 
   const handleEdit = () => {
