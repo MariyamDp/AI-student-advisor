@@ -20,11 +20,6 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .chat-layout {
-    flex-direction: column;
-    position: relative;
-  }
-
   .sidebar-overlay {
     display: block;
     position: fixed;
