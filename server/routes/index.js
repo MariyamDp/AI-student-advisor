@@ -1,6 +1,7 @@
 import authRoutes from '../auth.js';
 import chatRoutes from './chat.routes.js';
 import healthRoutes from './health.routes.js';
+import transcriptRoutes from './transcript.routes.js';
 
 /**
  * Register all application routes
@@ -15,6 +16,9 @@ export function registerRoutes(app) {
 
   // Chat API
   app.use('/api/chat', chatRoutes);
+
+  // Transcript API
+  app.use('/api/transcript', transcriptRoutes);
 }
 
 export default registerRoutes;
