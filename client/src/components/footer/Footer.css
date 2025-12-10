@@ -1,0 +1,129 @@
+.footer {
+    background: #ffffff;
+    padding: 4rem 1.5rem 3rem;
+    border-top: 1px solid #f1e5ea;
+  }
+  
+  .footer__inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 3fr);
+    gap: 4rem;
+    align-items: flex-start;
+  }
+  
+  /* Левая часть — бренд */
+  
+  .footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+  
+  .footer__logo-wrap {
+    width: 64px;
+    height: 64px;
+    border-radius: 1.5rem;
+    background: linear-gradient(135deg, #a61b32, #e04c64);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer__logo-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .footer__brand-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .footer__brand-name {
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #111827;
+  }
+  
+  .footer__brand-subtitle {
+    font-size: 0.9rem;
+    color: #6b7280;
+    line-height: 1.4;
+  }
+  
+  /* Правая часть — колонки */
+  
+  .footer__grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 3rem;
+  }
+  
+  .footer__column-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #a61b32;
+    margin-bottom: 1rem;
+  }
+  
+  .footer__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer__list li {
+    font-size: 0.92rem;
+    color: #374151;
+    margin-bottom: 0.55rem;
+    cursor: default;
+    transition: color 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+  }
+  
+  .footer__list li:hover {
+    color: #a61b32;
+    transform: translateX(2px);
+    opacity: 0.95;
+  }
+  
+  /* Нижняя линия */
+  
+  .footer__bottom {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #9ca3af;
+  }
+  
+  /* Адаптив */
+  
+  @media (max-width: 960px) {
+    .footer__inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  
+    .footer__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      row-gap: 2rem;
+    }
+  }
+  
+  @media (max-width: 640px) {
+    .footer {
+      padding: 3rem 1.25rem 2.5rem;
+    }
+  
+    .footer__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2rem;
+    }
+  
+    .footer__brand {
+      align-items: flex-start;
+    }
+  }
+  
