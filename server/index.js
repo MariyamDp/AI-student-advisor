@@ -6,6 +6,7 @@ import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import authRoutes, { authMiddleware } from './auth.js';
+import courseProgressRoutes from './courseProgress.js';
 
 dotenv.config();
 
@@ -31,6 +32,7 @@ app.use(express.json());
 
 // Auth routes
 app.use('/auth', authRoutes);
+app.use('/api/course-progress', courseProgressRoutes);
 
 app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });

@@ -1,16 +1,16 @@
 import { useEffect, useRef } from 'react';
 import type { Message as Message } from '../../hooks/useChat';
 import ChatIcon from '../../assets/chatIcon.svg';
+import { formatUserMessage } from '../../utils/messageFormatting';
 import './ChatMessages.css';
 
 interface ChatMessagesProps {
   messages: Message[];
 }
 
-// Utility function to parse markdown bold (**text**) and convert to HTML
-const parseMarkdownBold = (text: string): string => {
-  // Replace **text** with <strong>text</strong>
-  return text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+const getMessageHtml = (message: Message) => {
+  if (message.isHtml) return message.content;
+  return formatUserMessage(message.content);
 };
 
 const ChatMessages = ({ messages }: ChatMessagesProps) => {
@@ -46,7 +46,7 @@ const ChatMessages = ({ messages }: ChatMessagesProps) => {
             <div
               className="message-text"
               dangerouslySetInnerHTML={{
-                __html: parseMarkdownBold(message.content),
+                __html: getMessageHtml(message),
               }}
             />
             <div className="message-time">

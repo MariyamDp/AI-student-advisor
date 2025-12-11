@@ -62,11 +62,11 @@
   background: white;
   border: 1px solid var(--border-color);
   border-radius: 12px;
-  padding: 1rem 1.25rem;
+  padding: 1rem 1.25rem 1.1rem;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.6rem;
 }
 
 .course-card__header {
@@ -88,16 +88,21 @@
 
 .course-card__actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-  align-items: flex-end;
+  flex-direction: row;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: flex-start;
+  row-gap: 0.5rem;
 }
 
 .course-card__controls {
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  min-width: 180px;
+  min-width: 200px;
+  flex: 0 0 200px;
 }
 
 .course-card__controls label {
@@ -167,15 +172,18 @@
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
-  align-items: flex-end;
-  min-width: 220px;
+  align-items: flex-start;
+  min-width: 260px;
+  flex: 1;
 }
 
 .add-course__form {
   display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
+  flex-direction: row;
+  gap: 0.5rem;
   width: 100%;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .add-course__buttons {
@@ -184,11 +192,16 @@
   justify-content: flex-end;
 }
 
+.course-select {
+  min-width: 240px;
+  flex: 1;
+}
+
 .btn-primary,
 .btn-secondary {
   border: none;
   border-radius: 10px;
-  padding: 0.55rem 0.85rem;
+  padding: 0.5rem 0.9rem;
   font-weight: 700;
   cursor: pointer;
 }

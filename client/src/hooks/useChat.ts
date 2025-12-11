@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { sendChatMessage } from '../services/api.service';
+import { formatAiResponse, formatUserMessage } from '../utils/messageFormatting';
 import { useAuth } from '../context/AuthContext';
 
 export interface Message {
@@ -7,6 +8,7 @@ export interface Message {
   content: string;
   sender: 'user' | 'ai';
   timestamp: Date;
+  isHtml?: boolean;
 }
 
 export const useChat = () => {
@@ -28,9 +30,10 @@ export const useChat = () => {
 
       const userMessage: Message = {
         id: Date.now().toString(),
-        content: content.trim(),
+        content: formatUserMessage(content.trim()),
         sender: 'user',
         timestamp: new Date(),
+        isHtml: true,
       };
 
       setMessages(prev => [...prev, userMessage]);
@@ -92,9 +95,10 @@ export const useChat = () => {
 
         const aiMessage: Message = {
           id: (Date.now() + 1).toString(),
-          content: answer || "I'm not sure about that yet.",
+          content: formatAiResponse(answer || "I'm not sure about that yet."),
           sender: 'ai',
           timestamp: new Date(),
+          isHtml: true,
         };
 
         setMessages(prev => [...prev, aiMessage]);
@@ -103,9 +107,10 @@ export const useChat = () => {
         const details = error instanceof Error ? error.message : 'Unknown error';
         const errorMessage: Message = {
           id: (Date.now() + 1).toString(),
-          content: `I'm sorry, I encountered an error. ${details}`,
+          content: formatAiResponse(`I'm sorry, I encountered an error. ${details}`),
           sender: 'ai',
           timestamp: new Date(),
+          isHtml: true,
         };
         setMessages(prev => [...prev, errorMessage]);
       } finally {

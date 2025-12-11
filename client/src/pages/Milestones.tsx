@@ -4,6 +4,7 @@ import Sidebar from '../components/chat/Sidebar';
 import ChatHeader from '../components/chat/ChatHeader';
 import { useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { fetchCourseProgress, saveCourseProgress } from '../services/progress.service';
 
 interface Milestone {
   year: number;
@@ -384,7 +385,7 @@ const majorAlias: Record<string, keyof typeof courseCatalog> = {
 };
 
 const MilestonesPage = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedYear, setSelectedYear] = useState(1);
@@ -392,6 +393,8 @@ const MilestonesPage = () => {
   const [isAddingCourse, setIsAddingCourse] = useState(false);
   const [courseInput, setCourseInput] = useState('');
   const [courseError, setCourseError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+  const [isLoadingProgress, setIsLoadingProgress] = useState(false);
 
   const rawYear = Number(user?.yearOfStudy ?? 1) || 1;
   const normalizedMajor = normalizeMajor(user?.major);
@@ -449,6 +452,35 @@ const MilestonesPage = () => {
     return Array.from(new Set([...(current || []), ...addedForYear]));
   }, [selectedCourses, addedForYear]);
 
+  const persistYearCourses = async (year: number, courses: string[]) => {
+    if (!token) return;
+    setIsSaving(true);
+    try {
+      const response = await saveCourseProgress(token, { year, courses });
+      setAddedCoursesByYear(response.coursesByYear || {});
+      setCourseError(null);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Failed to save courses';
+      setCourseError(message);
+    } finally {
+      setIsSaving(false);
+    }
+  };
+
+  useEffect(() => {
+    if (!token) return;
+    setIsLoadingProgress(true);
+    fetchCourseProgress(token)
+      .then(res => {
+        setAddedCoursesByYear(res.coursesByYear || {});
+      })
+      .catch(err => {
+        console.error('Failed to load course progress', err);
+        setCourseError(err instanceof Error ? err.message : 'Failed to load courses');
+      })
+      .finally(() => setIsLoadingProgress(false));
+  }, [token]);
+
   const handleAddCourse = () => {
     if (!courseData) return;
     if (!courseInput) {
@@ -463,26 +495,27 @@ const MilestonesPage = () => {
       return;
     }
 
-    setAddedCoursesByYear(prev => {
-      const next: Record<number, string[]> = {};
-      // Remove from all years
-      Object.keys(prev).forEach(key => {
-        const yearKey = Number(key);
-        next[yearKey] = prev[yearKey].filter(c => c !== courseInput);
-      });
-
-      const updatedYearList = alreadyInYear
-        ? (prev[selectedYear] ?? []).filter(c => c !== courseInput)
-        : [...(prev[selectedYear] ?? []), courseInput];
-
-      if (updatedYearList.length > 0) {
-        next[selectedYear] = updatedYearList;
-      } else if (next[selectedYear]?.length === 0) {
-        delete next[selectedYear];
-      }
-
-      return next;
+    const next: Record<number, string[]> = {};
+    // Remove course from all years to enforce uniqueness
+    Object.keys(addedCoursesByYear).forEach(key => {
+      const yearKey = Number(key);
+      const filtered = (addedCoursesByYear[yearKey] ?? []).filter(c => c !== courseInput);
+      if (filtered.length) next[yearKey] = filtered;
     });
+
+    const currentList = next[selectedYear] ?? [];
+    const updatedYearList = alreadyInYear
+      ? currentList.filter(c => c !== courseInput)
+      : [...currentList, courseInput];
+
+    if (updatedYearList.length > 0) {
+      next[selectedYear] = updatedYearList;
+    } else {
+      delete next[selectedYear];
+    }
+
+    setAddedCoursesByYear(next);
+    persistYearCourses(selectedYear, next[selectedYear] ?? []);
 
     setCourseInput('');
     setCourseError(null);
@@ -490,16 +523,15 @@ const MilestonesPage = () => {
   };
 
   const handleRemoveCourse = (course: string) => {
-    setAddedCoursesByYear(prev => {
-      const updated = { ...prev };
-      const filtered = (updated[selectedYear] ?? []).filter(c => c !== course);
-      if (filtered.length) {
-        updated[selectedYear] = filtered;
-      } else {
-        delete updated[selectedYear];
-      }
-      return updated;
-    });
+    const next = { ...addedCoursesByYear };
+    const filtered = (next[selectedYear] ?? []).filter(c => c !== course);
+    if (filtered.length) {
+      next[selectedYear] = filtered;
+    } else {
+      delete next[selectedYear];
+    }
+    setAddedCoursesByYear(next);
+    persistYearCourses(selectedYear, next[selectedYear] ?? []);
   };
 
   const progressPercent = useMemo(() => {
@@ -613,7 +645,7 @@ const MilestonesPage = () => {
                     {isAddingCourse ? (
                       <div className="add-course__form">
                         <select
-                          className="year-select"
+                          className="year-select course-select"
                           value={courseInput}
                           onChange={e => {
                             setCourseInput(e.target.value);
