@@ -388,7 +388,7 @@ const MilestonesPage = () => {
   const location = useLocation();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedYear, setSelectedYear] = useState(1);
-  const [addedCourses, setAddedCourses] = useState<string[]>([]);
+  const [addedCoursesByYear, setAddedCoursesByYear] = useState<Record<number, string[]>>({});
   const [isAddingCourse, setIsAddingCourse] = useState(false);
   const [courseInput, setCourseInput] = useState('');
   const [courseError, setCourseError] = useState<string | null>(null);
@@ -443,10 +443,11 @@ const MilestonesPage = () => {
     () => Array.from(new Set(allMajorCourses)),
     [allMajorCourses]
   );
+  const addedForYear = addedCoursesByYear[selectedYear] ?? [];
   const displayCourses = useMemo(() => {
     const current = selectedCourses ?? [];
-    return Array.from(new Set([...(current || []), ...addedCourses]));
-  }, [selectedCourses, addedCourses]);
+    return Array.from(new Set([...(current || []), ...addedForYear]));
+  }, [selectedCourses, addedForYear]);
 
   const handleAddCourse = () => {
     if (!courseData) return;
@@ -455,18 +456,33 @@ const MilestonesPage = () => {
       return;
     }
     const isValid = allCoursesUnique.includes(courseInput);
-    const alreadyAdded = addedCourses.includes(courseInput);
+    const alreadyInYear = addedForYear.includes(courseInput);
 
     if (!isValid) {
       setCourseError('Choose a course from the list');
       return;
     }
 
-    if (alreadyAdded) {
-      setAddedCourses(prev => prev.filter(c => c !== courseInput));
-    } else {
-      setAddedCourses(prev => [...prev, courseInput]);
-    }
+    setAddedCoursesByYear(prev => {
+      const next: Record<number, string[]> = {};
+      // Remove from all years
+      Object.keys(prev).forEach(key => {
+        const yearKey = Number(key);
+        next[yearKey] = prev[yearKey].filter(c => c !== courseInput);
+      });
+
+      const updatedYearList = alreadyInYear
+        ? (prev[selectedYear] ?? []).filter(c => c !== courseInput)
+        : [...(prev[selectedYear] ?? []), courseInput];
+
+      if (updatedYearList.length > 0) {
+        next[selectedYear] = updatedYearList;
+      } else if (next[selectedYear]?.length === 0) {
+        delete next[selectedYear];
+      }
+
+      return next;
+    });
 
     setCourseInput('');
     setCourseError(null);
@@ -474,7 +490,16 @@ const MilestonesPage = () => {
   };
 
   const handleRemoveCourse = (course: string) => {
-    setAddedCourses(prev => prev.filter(c => c !== course));
+    setAddedCoursesByYear(prev => {
+      const updated = { ...prev };
+      const filtered = (updated[selectedYear] ?? []).filter(c => c !== course);
+      if (filtered.length) {
+        updated[selectedYear] = filtered;
+      } else {
+        delete updated[selectedYear];
+      }
+      return updated;
+    });
   };
 
   const progressPercent = useMemo(() => {
@@ -613,7 +638,7 @@ const MilestonesPage = () => {
                             onClick={handleAddCourse}
                             disabled={!courseInput}
                           >
-                            {courseInput && addedCourses.includes(courseInput) ? 'Remove' : 'Add'}
+                            {courseInput && addedForYear.includes(courseInput) ? 'Remove' : 'Add'}
                           </button>
                         </div>
                         {courseError && <p className="course-error">{courseError}</p>}
@@ -638,7 +663,7 @@ const MilestonesPage = () => {
                 {courseData ? (
                   displayCourses.length > 0 ? (
                     displayCourses.map(course => {
-                      const isTracked = addedCourses.includes(course);
+                      const isTracked = addedForYear.includes(course);
                       return (
                         <div key={course} className={`course-pill ${isTracked ? 'tracked' : ''}`}>
                           <span>{course}</span>
