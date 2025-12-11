@@ -10,7 +10,8 @@
 .chat-layout {
   display: flex;
   flex: 1;
-  max-height: calc(100vh - 80px);
+  height: calc(100vh - 80px);
+  min-height: calc(100vh - 80px);
 }
 
 /* Sidebar Overlay */

@@ -21,6 +21,7 @@ const ChatAssistant = () => {
 
   const navItems = [
     { name: 'Chat Assistant', path: '/chat', active: location.pathname === '/chat' },
+    { name: 'Milestones', path: '/milestones', active: location.pathname === '/milestones' },
     { name: 'Profile', path: '/profile', active: location.pathname === '/profile' },
   ];
 

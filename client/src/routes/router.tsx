@@ -7,6 +7,7 @@ import SignUp from '../pages/SignUp';
 import Profile from '../pages/Profile';
 
 const ChatAssistant = lazy(() => import('../pages/ChatAssistant'));
+const Milestones = lazy(() => import('../pages/Milestones'));
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,6 +29,15 @@ export const router = createBrowserRouter(
         element={
           <ProtectedRoute>
             <ChatAssistant />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="milestones"
+        element={
+          <ProtectedRoute>
+            <Milestones />
           </ProtectedRoute>
         }
       />
