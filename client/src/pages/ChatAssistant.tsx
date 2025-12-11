@@ -3,14 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useChat } from '../hooks/useChat';
 import ChatHeader from '../components/chat/ChatHeader';
 import Sidebar from '../components/chat/Sidebar';
-import CategoriesSection from '../components/chat/CategoriesSection';
 import ChatContainer from '../components/chat/ChatContainer';
-import BookIcon from '../assets/bookIcon.svg';
-import DateIcon from '../assets/dateIcon.svg';
-import GlassIcon from '../assets/glassIcon.svg';
-import ProfileIcon from '../assets/profileIcon.svg';
-import PlaneIcon from '../assets/plIcon.png';
-import QuestionIcon from '../assets/questionIcon.svg';
 import './ChatAssistant.css';
 
 const ChatAssistant = () => {
@@ -33,21 +26,9 @@ const ChatAssistant = () => {
     'Check GPA',
   ];
 
-  const categories = [
-    { name: 'Academic Planning', icon: BookIcon, notactive: false },
-    { name: 'Course Registration', icon: DateIcon, notactive: true },
-    { name: 'Academic Mobility', icon: PlaneIcon, notactive: true },
-    { name: 'Double Degree Program', icon: ProfileIcon, notactive: true },
-    { name: 'Research Opportunities', icon: GlassIcon, notactive: true },
-    { name: 'General Support', icon: QuestionIcon, notactive: true },
-  ];
-
   const navItems = [
     { name: 'Chat Assistant', path: '/chat', active: location.pathname === '/chat' },
-    { name: 'Milestones', path: '/milestones', active: location.pathname === '/milestones' },
-    { name: 'Dashboard', path: '/dashboard', active: location.pathname === '/dashboard' },
     { name: 'Profile', path: '/profile', active: location.pathname === '/profile' },
-    { name: 'Resources', path: '/resources', active: location.pathname === '/resources' },
   ];
 
   return (
@@ -66,7 +47,6 @@ const ChatAssistant = () => {
         {isSidebarOpen && (
           <div className="sidebar-overlay" onClick={() => setIsSidebarOpen(false)} />
         )}
-        <CategoriesSection categories={categories} />
         <main className="chat-main">
           <ChatContainer
             messages={messages}

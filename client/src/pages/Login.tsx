@@ -14,13 +14,14 @@ const Login = () => {
 
   const { login, loginWithGoogle } = useAuth();
 
-  const onSubmit = async (val: string) => {
-    if (!val.trim()) return;
+  const onSubmit = async (email: string, password: string) => {
+    if (!email.trim() || !password.trim()) return;
     setLoading(true);
     setError(null);
     try {
-      await login(val.trim());
-      navigate('/profile', { state: { isInitialSetup: true } });
+      await login(email.trim(), password);
+      // After login, redirect to chat (not profile setup)
+      navigate('/chat');
     } catch (err) {
       const details = err instanceof Error ? err.message : 'Login failed';
       setError(details);
@@ -34,7 +35,9 @@ const Login = () => {
     setError(null);
     try {
       await loginWithGoogle(idToken);
-      navigate('/profile', { state: { isInitialSetup: true } });
+      // Check if user needs profile setup (no name, major, or yearOfStudy)
+      // This will be handled by the AuthContext after login
+      navigate('/chat');
     } catch (err) {
       const details = err instanceof Error ? err.message : 'Google login failed';
       setError(details);
@@ -46,7 +49,7 @@ const Login = () => {
   return (
     <div className="login-page">
       <Header />
-      <AuthCard title="Sign in" subtitle="Enter your email to continue">
+      <AuthCard title="Sign in" subtitle="Enter your email and password to continue">
         <LoginForm
           onSubmit={onSubmit}
           onGoogleSignIn={onGoogleSignIn}

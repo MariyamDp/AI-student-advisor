@@ -14,18 +14,24 @@ const SERVER_URL = getServerUrl();
 
 export interface LoginResponse {
   token: string;
-  user: { email: string };
+  user: { 
+    email: string;
+    id?: string;
+    name?: string;
+    major?: string;
+    yearOfStudy?: string;
+  };
 }
 
-export async function login(email: string): Promise<LoginResponse> {
+export async function login(email: string, password: string): Promise<LoginResponse> {
   const res = await fetch(`${SERVER_URL}/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email }),
+    body: JSON.stringify({ email, password }),
   });
   if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`Login error (${res.status}): ${text}`);
+    const errorData = await res.json().catch(() => ({ error: 'Login failed' }));
+    throw new Error(errorData.error || `Login error (${res.status})`);
   }
   return res.json();
 }
@@ -43,7 +49,15 @@ export async function signup(email: string, password: string): Promise<LoginResp
   return res.json();
 }
 
-export async function getProfile(token: string): Promise<{ user: { email: string; name?: string; major?: string; yearOfStudy?: string } }> {
+export async function getProfile(token: string): Promise<{ 
+  user: { 
+    email: string;
+    id?: string;
+    name?: string;
+    major?: string;
+    yearOfStudy?: string;
+  } 
+}> {
   const res = await fetch(`${SERVER_URL}/auth/me`, {
     headers: { Authorization: `Bearer ${token}` },
   });
