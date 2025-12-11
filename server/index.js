@@ -36,6 +36,7 @@ app.get('/health', (_req, res) => {
   res.json({ status: 'ok' });
 });
 
+
 app.post('/api/chat', authMiddleware, async (req, res) => {
   try {
     const { query, conversationId, inputs } = req.body || {};

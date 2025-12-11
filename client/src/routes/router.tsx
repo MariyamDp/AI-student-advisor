@@ -22,6 +22,7 @@ export const router = createBrowserRouter(
           </ProtectedRoute>
         }
       />
+
       <Route
         path="chat"
         element={

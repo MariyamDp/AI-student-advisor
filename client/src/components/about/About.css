@@ -1,0 +1,76 @@
+/* client/src/pages/About.css */
+
+.about {
+    padding: 6rem 0;
+    background: #fff7f8; 
+  }
+  
+  .about__container {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  
+  .about__title {
+    text-align: center;
+    font-size: 2.8rem;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #9b1236; 
+    margin-bottom: 3rem;
+  }
+  
+  .about__title span {
+    display: block;
+  }
+  
+  .about__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 3rem;
+    margin-top: 5rem;
+    align-items: center;
+  }
+  
+  .about__eyebrow {
+    font-weight: 800;
+    color: #9b1236;
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem; 
+  }
+  
+  .about__paragraph {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333333;
+    margin-bottom: 1rem;
+  }
+  
+  .about__image-wrapper {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .about__image {
+    width: 100%;
+    max-width: 800px;
+    border-radius: 24px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12);
+  }
+  
+  
+  /* Адаптив под мобилку */
+  @media (max-width: 900px) {
+    .about__layout {
+      grid-template-columns: 1fr;
+    }
+  
+    .about__image-wrapper {
+      order: -1; /* сначала картинка, потом текст, если хочется */
+    }
+  
+    .about__title {
+      font-size: 2.2rem;
+    }
+  }
+  

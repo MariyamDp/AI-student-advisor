@@ -12,24 +12,59 @@ const Header = () => {
         </Link>
 
         <nav className="nav-menu">
-          <Link to="/" className="nav-link">
+          <button
+            className="nav-link"
+            onClick={() => {
+              document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Home
-          </Link>
-          <Link to="/about" className="nav-link">
+          </button>
+
+          <button
+            className="nav-link"
+            onClick={() => {
+              document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             About
-          </Link>
-          <Link to="/who-we-serve" className="nav-link">
+          </button>
+
+          <button
+            className="nav-link"
+            onClick={() => {
+              document.getElementById('who-we-serve')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Who We Serve
-          </Link>
-          <Link to="/product" className="nav-link">
+          </button>
+
+          <button
+            className="nav-link"
+            onClick={() => {
+              document.getElementById('product')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Product
-          </Link>
-          <Link to="/pricing" className="nav-link">
+          </button>
+
+          <button
+            className="nav-link"
+            onClick={() => {
+              document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             Pricing
-          </Link>
-          <Link to="/faqs" className="nav-link">
+          </button>
+
+          <button
+            className="nav-link"
+            onClick={() => {
+              document.getElementById('faqs')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
             FAQs
-          </Link>
+          </button>
         </nav>
 
         <Link to="/login" className="login-btn">
