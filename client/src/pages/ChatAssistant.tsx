@@ -19,13 +19,6 @@ const ChatAssistant = () => {
     await sendMessage(messageToSend);
   };
 
-  const suggestedActions = [
-    'Check prerequisites',
-    'Show my milestones',
-    'View course catalog',
-    'Check GPA',
-  ];
-
   const navItems = [
     { name: 'Chat Assistant', path: '/chat', active: location.pathname === '/chat' },
     { name: 'Profile', path: '/profile', active: location.pathname === '/profile' },
@@ -50,12 +43,10 @@ const ChatAssistant = () => {
         <main className="chat-main">
           <ChatContainer
             messages={messages}
-            suggestedActions={suggestedActions}
             inputValue={inputValue}
             isLoading={isLoading}
             onInputChange={setInputValue}
             onSend={handleSendMessage}
-            onActionClick={sendMessage}
           />
         </main>
       </div>
