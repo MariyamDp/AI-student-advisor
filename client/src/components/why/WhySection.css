@@ -1,0 +1,136 @@
+.why {
+    position: relative;
+    padding: 6rem 1.5rem 5rem;
+    background: #ffffff;
+    overflow: hidden;
+  }
+  
+
+  .why::before {
+    content: "";
+    position: absolute;
+    top: 58%;               
+    left: 50%;
+    width: 700px;           
+    height: 700px;          
+    background: url("/circle.png") no-repeat center;
+    background-size: contain;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+       
+  }
+  
+
+  .why__container {
+    position: relative;     
+    z-index: 1;
+    max-width: 1120px;
+    margin: 0 auto;
+  }
+  
+  
+  
+  
+  .why__title {
+    text-align: center;
+    font-size: 2.8rem;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #971537;
+    margin-bottom: 4.5rem;
+  }
+  
+
+  
+  .why__grid-wrapper {
+    position: relative;
+    padding: 2.5rem 0;
+  }
+  
+ 
+  .why__grid-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("/why-bg.png") no-repeat center;
+    background-size: 520px auto; 
+    opacity: 0.16;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+
+  .why__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem 2rem;
+  }
+  
+
+  .why__card {
+    display: flex;
+    align-items: flex-start;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    padding: 1.75rem 2rem;
+    box-shadow: 0 22px 55px rgba(15, 23, 42, 0.08);
+  }
+  
+
+  .why__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #A61B32, #E04C64);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .why__icon img {
+    width: 32px;
+    height: 32px;
+  }
+  
+
+  .why__content {
+    flex: 1;
+  }
+  
+  .why__card-title {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.75rem;
+    color: #111827;
+  }
+  
+  .why__card-text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4b5563;
+  }
+  
+
+  @media (max-width: 900px) {
+    .why {
+      padding: 4.5rem 1.25rem 4rem;
+    }
+  
+    .why__grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .why__card {
+      padding: 1.5rem 1.5rem;
+    }
+  
+    .why__title {
+      font-size: 2.2rem;
+    }
+  }
+  

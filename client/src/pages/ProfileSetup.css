@@ -1,0 +1,74 @@
+/* Profile Setup Page (Initial Setup) */
+.profile-setup-page {
+  min-height: 100vh;
+  background-color: var(--bg-gray);
+}
+
+.profile-setup-center {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-setup-card {
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  padding: 24px;
+  border: 1px solid var(--primary-red);
+  border-radius: 12px;
+  width: 360px;
+}
+
+.profile-setup-title {
+  margin-bottom: 12px;
+}
+
+.profile-setup-subtitle {
+  margin-top: 0;
+  margin-bottom: 16px;
+  color: var(--text-secondary);
+}
+
+.profile-setup-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-setup-form select.input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 16px;
+  font-family: inherit;
+  background-color: var(--bg-white);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%234a5568' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+
+.profile-setup-form select.input:hover {
+  border-color: var(--primary-red-light);
+}
+
+.profile-setup-form select.input.input-error {
+  border-color: var(--primary-red);
+}
+
+.profile-setup-button {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.profile-error-message {
+  color: var(--primary-red);
+  font-size: 14px;
+  text-align: center;
+  margin-top: 0.5rem;
+}

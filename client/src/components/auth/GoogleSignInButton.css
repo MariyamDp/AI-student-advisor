@@ -1,0 +1,18 @@
+.google-sign-in-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
+.google-sign-in-button {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Ensure Google button is visible */
+.google-sign-in-button iframe {
+  width: 100% !important;
+}

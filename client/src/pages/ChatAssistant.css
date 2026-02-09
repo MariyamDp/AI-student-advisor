@@ -1,0 +1,45 @@
+/* Chat Assistant Page Styles */
+.chat-assistant-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main Layout */
+.chat-layout {
+  display: flex;
+  flex: 1;
+  max-height: calc(100vh - 80px);
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chat-layout {
+    flex-direction: column;
+    position: relative;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}
+
+/* Desktop: No overlay needed */
+@media (min-width: 769px) {
+  .sidebar-overlay {
+    display: none;
+  }
+}

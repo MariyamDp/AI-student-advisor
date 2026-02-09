@@ -1,0 +1,21 @@
+.signup-page {
+  min-height: 100vh;
+  background-color: var(--bg-white);
+}
+
+.signup-page-link {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.signup-page-link a {
+  color: var(--primary-red);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.signup-page-link a:hover {
+  text-decoration: underline;
+}

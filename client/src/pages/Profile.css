@@ -1,0 +1,94 @@
+/* Profile Page Styles */
+.profile-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-layout {
+  display: flex;
+  flex: 1;
+  max-height: calc(100vh - 80px);
+}
+
+.profile-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2rem;
+}
+
+.profile-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.profile-header {
+  margin-bottom: 2rem;
+}
+
+.profile-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.profile-subtitle {
+  color: var(--text-secondary);
+  margin: 0;
+  font-size: 1rem;
+}
+
+.profile-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.profile-card {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  display: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .profile-main {
+    padding: 1rem;
+  }
+
+  .profile-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .profile-title {
+    font-size: 1.5rem;
+  }
+
+  .sidebar-overlay {
+    display: block;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+}
+
+@media (min-width: 769px) {
+  .sidebar-overlay {
+    display: none;
+  }
+}

@@ -1,0 +1,128 @@
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-preview {
+  background: white;
+  border: 2px solid var(--primary-red);
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.chat-header {
+  background-color: var(--primary-red);
+  padding: 1rem;
+  color: white;
+  font-weight: 600;
+}
+
+.chat-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-icon {
+  font-size: 1.25rem;
+}
+
+.chat-messages-preview {
+  padding: 1rem;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.message {
+  display: flex;
+  max-width: 80%;
+}
+
+.ai-message-preview {
+  align-self: flex-start;
+}
+
+.user-message-preview {
+  align-self: flex-end;
+}
+
+.message-content-preview {
+  padding: 0.75rem 1rem;
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.ai-message-preview .message-content-preview {
+  background-color: #f3f4f6;
+  color: #374151;
+  border-top-left-radius: 0.25rem;
+}
+
+.user-message-preview .message-content-preview {
+  background-color: #efe1e4;
+  color: var(--primary-red);
+  border-bottom-right-radius: 0.25rem;
+}
+
+.chat-input {
+  padding: 1rem;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.message-input {
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.message-input:focus {
+  border-color: var(--primary-red);
+}
+
+.send-btn-preview {
+  background-color: transparent;
+  border: none;
+  width: 32px;
+}
+.send-btn-preview img {
+  width: 100%;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .chat-preview {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chat-preview {
+    max-width: 300px;
+  }
+}

@@ -1,0 +1,41 @@
+.profile-card-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.5rem;
+}
+
+.user-name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem 0;
+}
+
+.user-major {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.25rem 0;
+}
+
+.user-year {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 0 0 1.5rem 0;
+}
+
+.user-school {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.edit-button {
+  width: 100%;
+  margin-top: 1rem;
+}
